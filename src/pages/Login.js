@@ -1,8 +1,11 @@
 import React, { useContext } from 'react';
+import { useHistory } from 'react-router';
 import Context from '../contexts/Context';
+import { setTokens, setUser } from '../services/localStorage';
 
 export default function Login() {
   const { login, setLogin } = useContext(Context);
+  const history = useHistory();
 
   const handleChange = ({ target }) => {
     const { name, value } = target;
@@ -15,6 +18,9 @@ export default function Login() {
   const emailIsValid = regexForEmail.test(login.email);
 
   const handleClick = () => {
+    setTokens();
+    setUser({ email: login.email });
+    history.push('/comidas');
   };
 
   return (
