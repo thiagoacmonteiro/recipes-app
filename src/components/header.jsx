@@ -14,23 +14,26 @@ export default function Header({ searchIcon, text }) {
 
   return (
     <div className="header-container">
-      <Link to="/perfil">
-        <img
-          src={ profileIcon }
-          alt="profileIcon"
-          data-testid="profile-top-btn"
-        />
-      </Link>
-      <div data-testid="page-title">{text}</div>
-      {searchIcon && (
-        <button onClick={ renderSearchInput } type="button">
-          <img src={ searchIcon } alt="searchIcon" data-testid="search-top-btn" />
-        </button>
-      )}
-
-      {
-        canRenderSearchInput && <FilterForm />
-      }
+      <div className="header-content">
+        <Link to="/perfil">
+          <img
+            src={ profileIcon }
+            alt="profileIcon"
+            data-testid="profile-top-btn"
+          />
+        </Link>
+        <div data-testid="page-title">{text}</div>
+        {searchIcon && (
+          <button onClick={ renderSearchInput } type="button">
+            <img src={ searchIcon } alt="searchIcon" data-testid="search-top-btn" />
+          </button>
+        )}
+      </div>
+      <div className="search-bar">
+        {
+          canRenderSearchInput && <FilterForm />
+        }
+      </div>
     </div>
   );
 }
