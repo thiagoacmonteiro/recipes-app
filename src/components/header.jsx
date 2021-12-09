@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import profileIcon from '../images/profileIcon.svg';
 import '../styles/Header.css';
+import FilterForm from './FilterForm';
 
 export default function Header({ searchIcon, text }) {
   const [canRenderSearchInput, setCanRenderSearchInput] = useState(false);
@@ -28,7 +29,7 @@ export default function Header({ searchIcon, text }) {
       )}
 
       {
-        canRenderSearchInput && <input type="text" data-testid="search-input" />
+        canRenderSearchInput && <FilterForm />
       }
     </div>
   );
