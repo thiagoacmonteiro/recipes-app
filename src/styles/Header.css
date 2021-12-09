@@ -15,7 +15,7 @@
 
 .search-bar {
   align-items: center;
-  background: rgb(255, 255, 255);
+  background: white;
   display: flex;
   justify-content: center;
   width: 100vw;
