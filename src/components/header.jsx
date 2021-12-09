@@ -1,10 +1,16 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import profileIcon from '../images/profileIcon.svg';
 import '../styles/Header.css';
 
 export default function Header({ searchIcon, text }) {
+  const [canRenderSearchInput, setCanRenderSearchInput] = useState(false);
+
+  function renderSearchInput() {
+    setCanRenderSearchInput(!canRenderSearchInput);
+  }
+
   return (
     <div className="header-container">
       <Link to="/perfil">
@@ -14,13 +20,16 @@ export default function Header({ searchIcon, text }) {
           data-testid="profile-top-btn"
         />
       </Link>
-      <div data-testid="page-title">{ text }</div>
-      { searchIcon
-      && <img
-        src={ searchIcon }
-        alt="searchIcon"
-        data-testid="search-top-btn"
-      />}
+      <div data-testid="page-title">{text}</div>
+      {searchIcon && (
+        <button onClick={ renderSearchInput } type="button">
+          <img src={ searchIcon } alt="searchIcon" data-testid="search-top-btn" />
+        </button>
+      )}
+
+      {
+        canRenderSearchInput && <input type="text" data-testid="search-input" />
+      }
     </div>
   );
 }
