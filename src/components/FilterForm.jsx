@@ -12,6 +12,7 @@ export default function FilterForm() {
   const [selectedFilter, setSelectedFilter] = useState('');
   const [inputValue, setInputValue] = useState('');
   const { location: { pathname } } = useHistory();
+  const history = useHistory();
 
   function handleClickFilter({ target: { name } }) {
     setIsCheked({ ...isChecked, [name]: !isChecked[name] });
@@ -24,13 +25,17 @@ export default function FilterForm() {
       radioName: fetchByName,
       radioLetter: fetchByFirstLetter,
     };
-
+    let response = [];
     if (pathname === '/comidas') {
-      const response = await fetch[selectedFilter](inputValue, 'meal');
-      console.log(response);
+      response = await fetch[selectedFilter](inputValue, 'meal');
+      if (response.meals.length === 1) {
+        history.push(`/comidas/${response.meals[0].idMeal}`);
+      }
     } else {
-      const response = await fetch[selectedFilter](inputValue, 'cocktail');
-      console.log(response);
+      response = await fetch[selectedFilter](inputValue, 'cocktail');
+      if (response.drinks.length === 1) {
+        history.push(`/bebidas/${response.drinks[0].idDrink}`);
+      }
     }
   }
 
