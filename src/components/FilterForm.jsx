@@ -8,27 +8,32 @@ export default function FilterForm() {
     radioLetter: false,
   });
 
-  // const [selectedFilter, setSelectedFilter] = useState('');
+  const [selectedFilter, setSelectedFilter] = useState('');
   const [inputValue, setInputValue] = useState('');
 
   function handleClickFilter({ target: { name } }) {
     setIsCheked({ ...isChecked, [name]: !isChecked[name] });
+    if (name) setSelectedFilter(name);
   }
-  async function handleClickSearch() {
-    if (isChecked.radioIngredients) {
-      const teste = await fetchIngredients(inputValue);
-      console.log(teste);
-    } else if (isChecked.radioName) {
-      const teste = await fetchByName(inputValue);
-      console.log(teste);
-    } else if (isChecked.radioLetter) {
-      if (inputValue.length > 1) {
-        return global.alert('Sua busca deve conter somente 1 (um) caracter');
-      }
-      const teste = await fetchByFirstLetter(inputValue);
-      console.log(teste);
+
+  async function chosenFetch() {
+    const fetch = {
+      radioIngredients: fetchIngredients,
+      radioName: fetchByName,
+      radioLetter: fetchByFirstLetter,
+    };
+
+    const response = await fetch[selectedFilter](inputValue);
+    console.log(response);
+  }
+
+  const handleClickSearch = () => {
+    if (isChecked[selectedFilter] === isChecked.radioLetter && inputValue.length > 1) {
+      return global.alert('Sua busca deve conter somente 1 (um) caracter');
     }
-  }
+
+    chosenFetch();
+  };
 
   function handleInputChange({ target: { value } }) {
     setInputValue(value);
