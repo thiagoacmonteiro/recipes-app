@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router';
 import { fetchIngredients, fetchByName, fetchByFirstLetter } from '../services/fetchApi';
 
 export default function FilterForm() {
@@ -10,6 +11,7 @@ export default function FilterForm() {
 
   const [selectedFilter, setSelectedFilter] = useState('');
   const [inputValue, setInputValue] = useState('');
+  const { location: { pathname } } = useHistory();
 
   function handleClickFilter({ target: { name } }) {
     setIsCheked({ ...isChecked, [name]: !isChecked[name] });
@@ -23,8 +25,13 @@ export default function FilterForm() {
       radioLetter: fetchByFirstLetter,
     };
 
-    const response = await fetch[selectedFilter](inputValue);
-    console.log(response);
+    if (pathname === '/comidas') {
+      const response = await fetch[selectedFilter](inputValue, 'meal');
+      console.log(response);
+    } else {
+      const response = await fetch[selectedFilter](inputValue, 'cocktail');
+      console.log(response);
+    }
   }
 
   const handleClickSearch = () => {
