@@ -5,6 +5,7 @@ import searchIcon from '../images/searchIcon.svg';
 import Card from '../components/Card';
 import LowerMenu from '../components/LowerMenu';
 import { didMountFetch } from '../services/fetchApi';
+import CategoryFilters from '../components/CategoryFilters';
 
 export default function MealsPage() {
   const { resultFetch, setResultFetch } = useContext(Context);
@@ -25,6 +26,7 @@ export default function MealsPage() {
   return (
     <div>
       <Header searchIcon={ searchIcon } text="Comidas" />
+      <CategoryFilters type="meal" objectKey="meals" />
       {resultFetch === null
         ? global.alert(
           'Sinto muito, não encontramos nenhuma receita para esses filtros.',

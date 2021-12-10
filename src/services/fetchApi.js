@@ -35,3 +35,11 @@ export async function didMountFetch(type) {
 
   return response;
 }
+
+export async function categorysFetch(type) {
+  const request = await fetch(`https://www.the${type}db.com/api/json/v1/1/list.php?c=list`);
+
+  const response = await request.json();
+
+  return response;
+}

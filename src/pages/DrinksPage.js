@@ -5,6 +5,7 @@ import Context from '../contexts/Context';
 import Card from '../components/Card';
 import LowerMenu from '../components/LowerMenu';
 import { didMountFetch } from '../services/fetchApi';
+import CategoryFilters from '../components/CategoryFilters';
 
 export default function DrinksPage() {
   const { resultFetch, setResultFetch } = useContext(Context);
@@ -24,11 +25,8 @@ export default function DrinksPage() {
 
   return (
     <div>
-      <Header
-        searchIcon={ searchIcon }
-        text="Bebidas"
-      />
-
+      <Header searchIcon={ searchIcon } text="Bebidas" />
+      <CategoryFilters type="cocktail" objectKey="drinks" />
       {
         resultFetch === null ? (
           global.alert('Sinto muito, não encontramos nenhuma receita para esses filtros.')
