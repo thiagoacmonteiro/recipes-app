@@ -1,5 +1,6 @@
 import React from 'react';
-import Header from '../components/header';
+import Header from '../components/Header';
+import LowerMenu from '../components/LowerMenu';
 
 export default function Explore() {
   return (
@@ -8,6 +9,7 @@ export default function Explore() {
         text="Explorar"
       />
       <p>Explore </p>
+      <LowerMenu />
     </div>
   );
 }
