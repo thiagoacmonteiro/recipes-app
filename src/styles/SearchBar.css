@@ -1,0 +1,10 @@
+.search-bar-container {
+  align-items: center;
+  display: flex;
+  gap: 30px;
+  padding: 10px;
+}
+
+.search-bar-container label {
+  margin-left: 10px;
+}
