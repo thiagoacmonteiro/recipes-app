@@ -1,8 +1,9 @@
 import React, { useContext } from 'react';
 import Context from '../contexts/Context';
-import Header from '../components/header';
+import Header from '../components/Header';
 import searchIcon from '../images/searchIcon.svg';
 import Card from '../components/Card';
+import LowerMenu from '../components/LowerMenu';
 
 const limit = 12;
 
@@ -29,6 +30,7 @@ export default function MealsPage() {
             />
           );
         })}
+      <LowerMenu />
     </div>
   );
 }
