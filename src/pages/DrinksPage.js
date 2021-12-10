@@ -1,14 +1,27 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import Header from '../components/Header';
 import searchIcon from '../images/searchIcon.svg';
 import Context from '../contexts/Context';
 import Card from '../components/Card';
 import LowerMenu from '../components/LowerMenu';
-
-const limit = 12;
+import { didMountFetch } from '../services/fetchApi';
 
 export default function DrinksPage() {
-  const { resultFetch } = useContext(Context);
+  const { resultFetch, setResultFetch } = useContext(Context);
+  const limit = 12;
+
+  useEffect(() => {
+    didMountFetch('cocktail')
+      .then((result) => setResultFetch(result.drinks));
+  }, [setResultFetch]);
+
+  function restrictResult() {
+    if (resultFetch.length < limit) {
+      return resultFetch;
+    }
+    return resultFetch.slice(0, limit);
+  }
+
   return (
     <div>
       <Header
@@ -19,21 +32,14 @@ export default function DrinksPage() {
       {
         resultFetch === null ? (
           global.alert('Sinto muito, não encontramos nenhuma receita para esses filtros.')
-        ) : (
-          resultFetch.map((recipe, index) => {
-            if (index === limit) {
-              return <p />;
-            }
-            return (
-              <Card
-                key={ index }
-                index={ index }
-                cardName={ recipe.strDrink }
-                img={ recipe.strDrinkThumb }
-              />);
-          })
-
-        )
+        ) : restrictResult().map((recipe, index) => (
+          <Card
+            key={ index }
+            index={ index }
+            cardName={ recipe.strDrink }
+            img={ recipe.strDrinkThumb }
+          />
+        ))
       }
       <LowerMenu />
     </div>
