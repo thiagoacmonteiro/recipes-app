@@ -24,7 +24,7 @@ export default function Header({ searchIcon, text }) {
         </Link>
         <div data-testid="page-title">{text}</div>
         {searchIcon && (
-          <button onClick={ renderSearchInput } type="button">
+          <button onClick={ renderSearchInput } type="button" className="search-btn">
             <img src={ searchIcon } alt="searchIcon" data-testid="search-top-btn" />
           </button>
         )}

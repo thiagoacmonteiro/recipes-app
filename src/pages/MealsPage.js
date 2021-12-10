@@ -32,5 +32,3 @@ export default function MealsPage() {
     </div>
   );
 }
-
-// global.alert('Sinto muito, não encontramos nenhuma receita para esses filtros.')
