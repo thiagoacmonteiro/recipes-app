@@ -8,9 +8,13 @@ export default function Provider({ children }) {
     password: '',
   });
 
+  const [resultFetch, setResultFetch] = useState([]);
+
   const contextValue = {
     login,
     setLogin,
+    resultFetch,
+    setResultFetch,
   };
 
   return (

@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useHistory } from 'react-router';
 import { fetchIngredients, fetchByName, fetchByFirstLetter } from '../services/fetchApi';
+import Context from '../contexts/Context';
 
 export default function FilterForm() {
+  const { setResultFetch } = useContext(Context);
+
   const [isChecked, setIsCheked] = useState({
     radioIngredients: false,
     radioName: false,
@@ -12,6 +15,7 @@ export default function FilterForm() {
   const [selectedFilter, setSelectedFilter] = useState('');
   const [inputValue, setInputValue] = useState('');
   const { location: { pathname } } = useHistory();
+
   const history = useHistory();
 
   function handleClickFilter({ target: { name } }) {
@@ -28,11 +32,13 @@ export default function FilterForm() {
     let response = [];
     if (pathname === '/comidas') {
       response = await fetch[selectedFilter](inputValue, 'meal');
-      if (response.meals.length === 1) {
+      setResultFetch(response.meals);
+      if (response.meals.length === 1 && response.meals !== null) {
         history.push(`/comidas/${response.meals[0].idMeal}`);
       }
     } else {
       response = await fetch[selectedFilter](inputValue, 'cocktail');
+      setResultFetch(response.drinks);
       if (response.drinks.length === 1) {
         history.push(`/bebidas/${response.drinks[0].idDrink}`);
       }
