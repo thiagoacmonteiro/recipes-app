@@ -27,3 +27,19 @@ export async function fetchByFirstLetter(letter, type) {
 
   return response;
 }
+
+export async function didMountFetch(type) {
+  const request = await fetch(`https://www.the${type}db.com/api/json/v1/1/search.php?s=`);
+
+  const response = await request.json();
+
+  return response;
+}
+
+export async function categorysFetch(type) {
+  const request = await fetch(`https://www.the${type}db.com/api/json/v1/1/list.php?c=list`);
+
+  const response = await request.json();
+
+  return response;
+}
