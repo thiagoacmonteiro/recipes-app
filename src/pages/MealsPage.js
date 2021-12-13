@@ -37,6 +37,8 @@ export default function MealsPage() {
             index={ index }
             cardName={ recipe.strMeal }
             img={ recipe.strMealThumb }
+            recipeId={ recipe.idMeal }
+            path="comidas"
           />
         ))}
       <LowerMenu />

@@ -1,10 +1,14 @@
 import PropTypes from 'prop-types';
 import React, { useEffect, useState, useContext } from 'react';
-import { categorysFetch, fetchByCategory } from '../services/fetchApi';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import { categorysFetch, fetchByCategory, didMountFetch } from '../services/fetchApi';
 import Context from '../contexts/Context';
 
 export default function CategoryFilters({ type, objectKey }) {
   const { setCategoryFetch, clicked, setClicked } = useContext(Context);
+  const { setResultFetch } = useContext(Context);
+  const { location: { pathname } } = useHistory();
+
   const [categorys, setCategorys] = useState([]);
 
   const limit = 5;
@@ -47,6 +51,16 @@ export default function CategoryFilters({ type, objectKey }) {
     }
   }
 
+  function getAll() {
+    setClicked({
+      nameBtn: '',
+      clickBtn: false,
+    });
+    if (pathname === '/comidas') {
+      didMountFetch('meal').then((result) => setResultFetch(result.meals));
+    } else didMountFetch('cocktail').then((result) => setResultFetch(result.drinks));
+  }
+
   return (
     <section>
       { categorys.length > 0 && restrictResult().map((category) => (
@@ -61,6 +75,13 @@ export default function CategoryFilters({ type, objectKey }) {
           {category.strCategory}
         </button>
       ))}
+      <button
+        type="button"
+        onClick={ getAll }
+        data-testid="All-category-filter"
+      >
+        All
+      </button>
     </section>
   );
 }
