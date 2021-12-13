@@ -43,3 +43,15 @@ export async function categorysFetch(type) {
 
   return response;
 }
+
+// Faz o fetch através do end point que filtra por categoria, utilizando o type, como nos fetchs anteriores e a categoria que
+// peguei através do name que incluí nos botões de categoria dinâmicos do componente CategoryFilters
+export async function fetchByCategory(type, category) {
+  const request = await fetch(
+    `https://www.the${type}db.com/api/json/v1/1/filter.php?c=${category}`,
+  );
+
+  const response = await request.json();
+
+  return response;
+}
