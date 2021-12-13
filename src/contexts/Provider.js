@@ -9,12 +9,21 @@ export default function Provider({ children }) {
   });
 
   const [resultFetch, setResultFetch] = useState([]);
+  const [categoryFetch, setCategoryFetch] = useState([]);
+  const [clicked, setClicked] = useState({
+    clickBtn: false,
+    nameBtn: '',
+  });
 
   const contextValue = {
     login,
     setLogin,
     resultFetch,
     setResultFetch,
+    categoryFetch,
+    setCategoryFetch,
+    clicked,
+    setClicked,
   };
 
   return (
