@@ -4,10 +4,11 @@ import { categorysFetch, fetchByCategory } from '../services/fetchApi';
 import Context from '../contexts/Context';
 
 export default function CategoryFilters({ type, objectKey }) {
-  const { setResultFetch } = useContext(Context);
-
+  const { setCategoryFetch, clicked, setClicked } = useContext(Context);
   const [categorys, setCategorys] = useState([]);
+
   const limit = 5;
+  const limit12 = 12;
 
   useEffect(() => {
     categorysFetch(type)
@@ -26,13 +27,23 @@ export default function CategoryFilters({ type, objectKey }) {
   // desestruturado através no target para filtrar de acordo com o nome da categoria
   // Seta o resultFetch de acordo com o type para que seja feito o map das receitas a cada click em um determinado botão de
   // categoria
+  function checkClicked(name) {
+    if (clicked.nameBtn !== name || clicked.nameBtn === '') {
+      setClicked({ nameBtn: name, clickBtn: true });
+    } else if (clicked.nameBtn === name) {
+      setClicked({
+        clickBtn: false,
+      });
+    }
+  }
+
   async function filterByCategory({ target: { name } }) {
     const filteredByCategory = await fetchByCategory(type, name);
-
+    checkClicked(name);
     if (type === 'meal') {
-      setResultFetch(filteredByCategory.meals);
+      setCategoryFetch(filteredByCategory.meals.slice(0, limit12));
     } else {
-      setResultFetch(filteredByCategory.drinks);
+      setCategoryFetch(filteredByCategory.drinks.slice(0, limit12));
     }
   }
 
@@ -43,6 +54,7 @@ export default function CategoryFilters({ type, objectKey }) {
           type="button"
           name={ category.strCategory } // Incluí esse name para usar como parâmetro através do target na função filterByCategory
           key={ category.strCategory }
+          click={ clicked }
           data-testid={ `${category.strCategory}-category-filter` }
           onClick={ filterByCategory }
         >

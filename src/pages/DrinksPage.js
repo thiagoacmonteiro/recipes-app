@@ -8,7 +8,7 @@ import { didMountFetch } from '../services/fetchApi';
 import CategoryFilters from '../components/CategoryFilters';
 
 export default function DrinksPage() {
-  const { resultFetch, setResultFetch } = useContext(Context);
+  const { resultFetch, setResultFetch, clicked, categoryFetch } = useContext(Context);
   const limit = 12;
 
   useEffect(() => {
@@ -17,8 +17,8 @@ export default function DrinksPage() {
   }, [setResultFetch]);
 
   function restrictResult() {
-    if (resultFetch.length < limit) {
-      return resultFetch;
+    if (clicked.clickBtn) {
+      return categoryFetch;
     }
     return resultFetch.slice(0, limit);
   }
