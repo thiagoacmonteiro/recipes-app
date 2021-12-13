@@ -36,6 +36,8 @@ export default function DrinksPage() {
             index={ index }
             cardName={ recipe.strDrink }
             img={ recipe.strDrinkThumb }
+            recipeId={ recipe.idDrink }
+            path="bebidas"
           />
         ))
       }
