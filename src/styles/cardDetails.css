@@ -1,0 +1,24 @@
+.recomended-container {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 5rem;
+  overflow-x: auto;
+  width: 80vw;
+}
+
+.card-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.image-card {
+  object-fit: cover;
+  width: 100px;
+}
+
+.startRecipe {
+  bottom: 0;
+  position: fixed;
+}
