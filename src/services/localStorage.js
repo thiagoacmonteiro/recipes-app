@@ -6,3 +6,8 @@ export function setTokens() {
 export function setUser(loginData) {
   localStorage.setItem('user', JSON.stringify(loginData));
 }
+
+export function getUser() {
+  const user = localStorage.getItem('user');
+  return JSON.parse(user).email;
+}
