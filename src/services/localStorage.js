@@ -9,5 +9,8 @@ export function setUser(loginData) {
 
 export function getUser() {
   const user = localStorage.getItem('user');
-  return JSON.parse(user).email;
+  if (user !== null) {
+    return JSON.parse(user).email;
+  }
+  return 'Faça o login';
 }
