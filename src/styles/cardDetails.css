@@ -17,3 +17,8 @@
   object-fit: cover;
   width: 100px;
 }
+
+.startRecipe {
+  bottom: 0;
+  position: fixed;
+}

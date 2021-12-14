@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import CardDetails from '../components/CardDetails';
 import { fetchById, didMountFetch } from '../services/fetchApi';
 import CardRecomended from '../components/CardRecomended';
+import '../styles/cardDetails.css';
 
 export default function DrinksDetails() {
   const [drinks, setDrinks] = useState();
@@ -77,7 +78,11 @@ export default function DrinksDetails() {
             Favoritar
           </button>
 
-          <button type="button" data-testid="start-recipe-btn">
+          <button
+            type="button"
+            data-testid="start-recipe-btn"
+            className="startRecipe"
+          >
             Iniciar Receita
           </button>
         </>

@@ -77,7 +77,11 @@ export default function MealsDetails() {
             Favoritar
           </button>
 
-          <button type="button" data-testid="start-recipe-btn">
+          <button
+            type="button"
+            data-testid="start-recipe-btn"
+            className="startRecipe"
+          >
             Iniciar Receita
           </button>
         </>

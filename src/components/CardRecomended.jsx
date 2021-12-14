@@ -33,17 +33,6 @@ export default function CardRecomended({ recomended, type }) {
   );
 }
 
-/*         <span
-          data-testid={ `${index}-recomendation-title` }
-        >
-          { recipe[`str${type}`] }
-        </span>
-        <span
-          data-testid={ `${index}-recomendation-card` }
-        >
-          { recipe2[`str${type}`] }
-     </span> */
-
 CardRecomended.propTypes = {
   recomended: PropTypes.arrayOf(PropTypes.object).isRequired,
   type: PropTypes.string.isRequired,
