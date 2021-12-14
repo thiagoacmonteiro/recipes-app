@@ -53,8 +53,8 @@ export default function DrinksDetails() {
       {drinks && (
         <>
           <img src={ drinks.strDrinkThumb } alt="" data-testid="recipe-photo" />
-          <p data-testid="recipe-title">{drinks.strDrink}</p>
-          <p data-testid="recipe-category">{drinks.strAlcoholic}</p>
+          <p data-testid="recipe-title">{ drinks.strDrink }</p>
+          <p data-testid="recipe-category">{ drinks.strAlcoholic }</p>
 
           <ul>
             {
@@ -68,7 +68,7 @@ export default function DrinksDetails() {
               ))
             }
           </ul>
-          <p data-testid="instructions">{drinks.strInstructions}</p>
+          <p data-testid="instructions">{ drinks.strInstructions }</p>
           <div>
             { recomended.length > 0
             && (
