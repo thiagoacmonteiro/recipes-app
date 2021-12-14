@@ -6,7 +6,6 @@ export default function Card({ index, cardName, img, recipeId, path }) {
   return (
     <Link
       to={ `/${path}/${recipeId}` }
-      id={ recipeId }
     >
       <section data-testid={ `${index}-recipe-card` }>
         <img

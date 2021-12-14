@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import { useHistory } from 'react-router-dom';
 import { fetchById, didMountFetch } from '../services/fetchApi';
 
 export default function DrinksDetails() {
@@ -18,18 +18,21 @@ export default function DrinksDetails() {
   useEffect(() => {
     const maxLength = 6;
     didMountFetch('meal')
-      .then((response) => setRecomended(response.meals.splice(0, maxLength)));
+      .then((response) => {
+        const sliced = response.meals.slice(0, maxLength);
+        setRecomended(sliced);
+      });
   }, []);
 
   const ingredients = drinks && Object.entries(drinks).reduce((acc, value) => {
-    if (value[0].includes('strIngredient') && value[1] !== null) {
+    if (value[0].includes('strIngredient') && value[1] !== null && value[1] !== '') {
       acc.push(value[1]);
     }
     return acc;
   }, []);
 
   const measures = drinks && Object.entries(drinks).reduce((acc, value) => {
-    if (value[0].includes('strMeasure') && value[1] !== ' ') {
+    if (value[0].includes('strMeasure') && value[1] !== ' ' && value[1] !== null) {
       acc.push(value[1]);
     }
     return acc;
