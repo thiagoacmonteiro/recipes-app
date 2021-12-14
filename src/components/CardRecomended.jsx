@@ -11,14 +11,16 @@ export default function CardRecomended({ recomended, type }) {
       name: recipe[`str${type}`],
     }
   ));
-  const newArr1 = [...arr];
-  console.log(newArr1);
 
   return (
     <div className="recomended-container">
       {
-        newArr1.map((card, index) => (
-          <div className="card-container" data-testid={ `${index}-recomendation-card` }>
+        arr.map((card, index) => (
+          <div
+            className="card-container"
+            data-testid={ `${index}-recomendation-card` }
+            key={ index }
+          >
             <img
               src={ card.image }
               alt="First slide"
