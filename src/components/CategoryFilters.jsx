@@ -1,12 +1,11 @@
 import PropTypes from 'prop-types';
 import React, { useEffect, useState, useContext } from 'react';
-import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import { useHistory } from 'react-router-dom';
 import { categorysFetch, fetchByCategory, didMountFetch } from '../services/fetchApi';
 import Context from '../contexts/Context';
 
 export default function CategoryFilters({ type, objectKey }) {
-  const { setCategoryFetch, clicked, setClicked } = useContext(Context);
-  const { setResultFetch } = useContext(Context);
+  const { setResultFetch, setCategoryFetch, clicked, setClicked } = useContext(Context);
   const { location: { pathname } } = useHistory();
 
   const [categorys, setCategorys] = useState([]);

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import { useHistory } from 'react-router-dom';
 import { fetchById, didMountFetch } from '../services/fetchApi';
 
 export default function MealsDetails() {
@@ -18,7 +18,10 @@ export default function MealsDetails() {
   useEffect(() => {
     const maxLength = 6;
     didMountFetch('cocktail')
-      .then((response) => setRecomended(response.drinks.splice(0, maxLength)));
+      .then((response) => {
+        const sliced = response.drinks.slice(0, maxLength);
+        setRecomended(sliced);
+      });
   }, []);
 
   const ingredients = meal && Object.entries(meal).reduce((acc, value) => {
