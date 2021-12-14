@@ -4,7 +4,10 @@ import { Link } from 'react-router-dom';
 
 export default function Card({ index, cardName, img, recipeId, path }) {
   return (
-    <Link to={ `/${path}/${recipeId}` }>
+    <Link
+      to={ `/${path}/${recipeId}` }
+      id={ recipeId }
+    >
       <section data-testid={ `${index}-recipe-card` }>
         <img
           src={ img }

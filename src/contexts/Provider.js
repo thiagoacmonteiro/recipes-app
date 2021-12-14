@@ -15,6 +15,8 @@ export default function Provider({ children }) {
     nameBtn: '',
   });
 
+  const [recipeDetails, setRecipeDetails] = useState({});
+
   const contextValue = {
     login,
     setLogin,
@@ -24,6 +26,8 @@ export default function Provider({ children }) {
     setCategoryFetch,
     clicked,
     setClicked,
+    recipeDetails,
+    setRecipeDetails,
   };
 
   return (

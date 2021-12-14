@@ -5,8 +5,7 @@ import { categorysFetch, fetchByCategory, didMountFetch } from '../services/fetc
 import Context from '../contexts/Context';
 
 export default function CategoryFilters({ type, objectKey }) {
-  const { setCategoryFetch, clicked, setClicked } = useContext(Context);
-  const { setResultFetch } = useContext(Context);
+  const { setResultFetch, setCategoryFetch, clicked, setClicked } = useContext(Context);
   const { location: { pathname } } = useHistory();
 
   const [categorys, setCategorys] = useState([]);

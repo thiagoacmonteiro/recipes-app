@@ -55,3 +55,13 @@ export async function fetchByCategory(type, category) {
 
   return response;
 }
+
+export async function fetchById(type, id) {
+  const request = await fetch(
+    `https://www.the${type}db.com/api/json/v1/1/lookup.php?i=${id}`,
+  );
+
+  const response = await request.json();
+
+  return response;
+}
