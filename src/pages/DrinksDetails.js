@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import CardDetails from '../components/CardDetails';
 import { fetchById, didMountFetch } from '../services/fetchApi';
+import CardRecomended from '../components/CardRecomended';
 
 export default function DrinksDetails() {
   const [drinks, setDrinks] = useState();
@@ -52,40 +54,20 @@ export default function DrinksDetails() {
     <div>
       {drinks && (
         <>
-          <img src={ drinks.strDrinkThumb } alt="" data-testid="recipe-photo" />
-          <p data-testid="recipe-title">{ drinks.strDrink }</p>
-          <p data-testid="recipe-category">{ drinks.strAlcoholic }</p>
-
-          <ul>
-            {
-              concatenate().map((ingredient, index) => (
-                <li
-                  key={ ingredient }
-                  data-testid={ `${index}-ingredient-name-and-measure` }
-                >
-                  {ingredient}
-                </li>
-              ))
-            }
-          </ul>
-          <p data-testid="instructions">{ drinks.strInstructions }</p>
+          <CardDetails
+            object={ drinks }
+            concatenate={ concatenate }
+            type="Drink"
+            category="Alcoholic"
+          />
           <div>
             { recomended.length > 0
             && (
-              recomended.map((recipe, index) => (
-                <div key={ index }>
-                  <span
-                    data-testid={ `${index}-recomendation-title` }
-                  >
-                    { recipe.strMeal }
-                  </span>
-                  <span
-                    data-testid={ `${index}-recomendation-card` }
-                  >
-                    {recipe.strMeal}
-                  </span>
-                </div>
-              ))) }
+              <CardRecomended
+                recomended={ recomended }
+                type="Meal"
+              />
+            )}
           </div>
           <button type="button" data-testid="share-btn">
             Compartilhar

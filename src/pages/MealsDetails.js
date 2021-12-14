@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import CardDetails from '../components/CardDetails';
+import CardRecomended from '../components/CardRecomended';
 import { fetchById, didMountFetch } from '../services/fetchApi';
 
 export default function MealsDetails() {
@@ -52,41 +54,20 @@ export default function MealsDetails() {
     <div>
       {meal && (
         <>
-          <img src={ meal.strMealThumb } alt="" data-testid="recipe-photo" />
-          <p data-testid="recipe-title">{meal.strMeal}</p>
-          <p data-testid="recipe-category">{meal.strCategory}</p>
-
-          <ul>
-            {
-              concatenate().map((ingredient, index) => (
-                <li
-                  key={ ingredient }
-                  data-testid={ `${index}-ingredient-name-and-measure` }
-                >
-                  {ingredient}
-                </li>
-              ))
-            }
-          </ul>
-          <p data-testid="instructions">{meal.strInstructions}</p>
-          <a href={ meal.strYoutube } data-testid="video">{meal.strYoutube}</a>
+          <CardDetails
+            object={ meal }
+            concatenate={ concatenate }
+            type="Meal"
+            category="Category"
+          />
           <div>
             { recomended.length > 0
             && (
-              recomended.map((recipe, index) => (
-                <div key={ index }>
-                  <span
-                    data-testid={ `${index}-recomendation-title` }
-                  >
-                    { recipe.strDrink }
-                  </span>
-                  <span
-                    data-testid={ `${index}-recomendation-card` }
-                  >
-                    {recipe.strDrink}
-                  </span>
-                </div>
-              ))) }
+              <CardRecomended
+                recomended={ recomended }
+                type="Drink"
+              />
+            ) }
           </div>
           <button type="button" data-testid="share-btn">
             Compartilhar
