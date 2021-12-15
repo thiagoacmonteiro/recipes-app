@@ -31,6 +31,10 @@ export default function DrinksDetails() {
       <ShareBtn />
       <FavoriteBtn
         id={ id }
+        nameType="Drink"
+        fetchType="cocktail"
+        typeKey="drinks"
+        type="bebida"
       />
       <StartRecipeBtn
         id={ id }

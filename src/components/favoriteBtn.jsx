@@ -4,15 +4,18 @@ import React, { useEffect, useState } from 'react';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 import { setFavoriteRecipes, getFavRecipes } from '../services/localStorage';
+import { fetchById } from '../services/fetchApi';
 
-export default function FavoriteBtn({ id }) {
+export default function FavoriteBtn({ id, fetchType, typeKey, type, nameType }) {
   const [favHeart, setFavHeart] = useState(false);
+  const [stateType, setStateType] = useState([]);
+  console.log(stateType);
   function handleClick() {
-    if (getFavRecipes() === null || !getFavRecipes().includes(id)) {
-      setFavoriteRecipes(id);
+    if (getFavRecipes() === null || !getFavRecipes().some((e) => e.id === id)) {
+      setFavoriteRecipes(stateType, nameType, type);
       setFavHeart(true);
     } else {
-        const filtered = getFavRecipes().filter((e) => e !== id);
+        const filtered = getFavRecipes().filter((e) => e.id !== id);
         localStorage.setItem(
             'favoriteRecipes', JSON.stringify(filtered),
         );
@@ -23,7 +26,7 @@ export default function FavoriteBtn({ id }) {
   function checkFav() {
     if (getFavRecipes() === null) {
       setFavHeart(false);
-    } else if (getFavRecipes().includes(id)) {
+    } else if (getFavRecipes().some((e) => e.id === id)) {
       setFavHeart(true);
     } else {
       setFavHeart(false);
@@ -34,20 +37,28 @@ export default function FavoriteBtn({ id }) {
     checkFav();
   }, []);
 
+  useEffect(() => {
+    fetchById(fetchType, id).then((response) => setStateType(response[typeKey][0]));
+  }, []);
+
   return (
     <div>
-      <button
+      <input
         data-testid="favorite-btn"
-        type="button"
+        type="image"
         onClick={ handleClick }
         value="favoritas"
-      >
-        <img src={ favHeart ? blackHeartIcon : whiteHeartIcon } alt="favorited" />
-      </button>
+        src={ favHeart ? blackHeartIcon : whiteHeartIcon }
+        alt="favoriteHeart"
+      />
     </div>
   );
 }
 
 FavoriteBtn.propTypes = {
+  fetchType: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
+  nameType: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+  typeKey: PropTypes.string.isRequired,
 };

@@ -31,6 +31,10 @@ export default function MealsDetails() {
 
       <FavoriteBtn
         id={ id }
+        nameType="Meal"
+        fetchType="meal"
+        typeKey="meals"
+        type="comida"
       />
 
       <StartRecipeBtn
