@@ -14,3 +14,23 @@ export function getUser() {
   }
   return 'Faça o login';
 }
+
+export function setRecipesInProgress(type, id) {
+  const localStorageData = localStorage.getItem('inProgressRecipes');
+  const inProgressRecipes = JSON.parse(localStorageData);
+
+  if (inProgressRecipes === null) {
+    return (
+      localStorage.setItem(
+        'inProgressRecipes', JSON.stringify({ [type]: { [id]: [] } }),
+      ));
+  }
+
+  return (
+    localStorage.setItem(
+      'inProgressRecipes', JSON.stringify(
+        { ...inProgressRecipes, [type]: { ...inProgressRecipes[type], [id]: [] } },
+      ),
+    )
+  );
+}
