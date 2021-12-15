@@ -3,10 +3,8 @@ import React, { useState, useEffect } from 'react';
 import { fetchById } from '../services/fetchApi';
 
 export default function CardDetails({ fetchType, id, type, typeKey, category }) {
-  console.log(type);
   const [stateType, setStateType] = useState([]);
 
-  console.log(stateType);
   useEffect(() => {
     fetchById(fetchType, id).then((response) => setStateType(response[typeKey][0]));
   }, []);

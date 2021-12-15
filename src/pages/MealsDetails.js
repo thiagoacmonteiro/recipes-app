@@ -2,6 +2,8 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import CardDetails from '../components/CardDetails';
 import CardRecomended from '../components/CardRecomended';
+import ShareBtn from '../components/ShareBtn';
+import StartRecipeBtn from '../components/StartRecipeBtn';
 
 export default function MealsDetails() {
   const {
@@ -24,21 +26,17 @@ export default function MealsDetails() {
         typeKey="drinks"
         type="Drink"
       />
-      <button type="button" data-testid="share-btn">
-        Compartilhar
-      </button>
+      <ShareBtn />
 
       <button type="button" data-testid="favorite-btn">
         Favoritar
       </button>
 
-      <button
-        type="button"
-        data-testid="start-recipe-btn"
-        className="startRecipe"
-      >
-        Iniciar Receita
-      </button>
+      <StartRecipeBtn
+        id={ id }
+        type="meals"
+        routeType="comidas"
+      />
     </div>
   );
 }
