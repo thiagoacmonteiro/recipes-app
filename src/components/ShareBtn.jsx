@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useLocation } from 'react-router';
 import copy from 'clipboard-copy';
+import shareIcon from '../images/shareIcon.svg';
 
 export default function ShareBtn() {
   const [copiedLink, setCopiedLink] = useState(false);
@@ -22,8 +23,9 @@ export default function ShareBtn() {
         data-testid="share-btn"
         type="button"
         onClick={ handleClick }
+        value="compartilhar"
       >
-        Compartilhar
+        <img src={ shareIcon } alt="shareIcon" />
       </button>
     </div>
   );

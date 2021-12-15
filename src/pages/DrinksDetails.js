@@ -5,6 +5,7 @@ import CardRecomended from '../components/CardRecomended';
 import '../styles/cardDetails.css';
 import StartRecipeBtn from '../components/StartRecipeBtn';
 import ShareBtn from '../components/ShareBtn';
+import FavoriteBtn from '../components/favoriteBtn';
 
 export default function DrinksDetails() {
   const {
@@ -28,11 +29,13 @@ export default function DrinksDetails() {
         type="Meal"
       />
       <ShareBtn />
-
-      <button type="button" data-testid="favorite-btn">
-        Favoritar
-      </button>
-
+      <FavoriteBtn
+        id={ id }
+        nameType="Drink"
+        fetchType="cocktail"
+        typeKey="drinks"
+        type="bebida"
+      />
       <StartRecipeBtn
         id={ id }
         type="cocktails"

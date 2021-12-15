@@ -10,14 +10,14 @@ export default function CardDetails({ fetchType, id, type, typeKey, category }) 
   }, []);
 
   const ingredients = stateType && Object.entries(stateType).reduce((acc, value) => {
-    if (value[0].includes('strIngredient') && value[1] !== '') {
+    if (value[0].includes('strIngredient') && value[1] !== '' && value[1] !== null) {
       acc.push(value[1]);
     }
     return acc;
   }, []);
 
   const measures = stateType && Object.entries(stateType).reduce((acc, value) => {
-    if (value[0].includes('strMeasure') && value[1] !== ' ') {
+    if (value[0].includes('strMeasure') && value[1] !== '' && value[1] !== null) {
       acc.push(value[1]);
     }
     return acc;
@@ -27,7 +27,8 @@ export default function CardDetails({ fetchType, id, type, typeKey, category }) 
     const ingredientAndMeasure = [];
 
     ingredients.forEach((ingredient, index) => {
-      ingredientAndMeasure.push(`${ingredient} - ${measures[index]}`);
+      ingredientAndMeasure.push(`${ingredient} - 
+      ${measures[index] ? measures[index] : 'to taste'}`);
     });
 
     return ingredientAndMeasure;

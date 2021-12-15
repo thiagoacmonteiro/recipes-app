@@ -34,3 +34,44 @@ export function setRecipesInProgress(type, id) {
     )
   );
 }
+
+export function setFavoriteRecipes(stateType, nameType, type) {
+  const localStorageData = JSON.parse(localStorage.getItem('favoriteRecipes'));
+
+  if (localStorageData === null) {
+    return (
+      localStorage.setItem(
+        'favoriteRecipes', JSON.stringify([{
+          id: stateType[`id${nameType}`],
+          type,
+          area: type === 'comida' ? stateType.strArea : '',
+          category: stateType.strCategory,
+          alcoholicOrNot: type === 'bebida' ? stateType.strAlcoholic : '',
+          name: stateType[`str${nameType}`],
+          image: stateType[`str${nameType}Thumb`],
+        }]),
+      ));
+  }
+
+  return (
+    localStorage.setItem(
+      'favoriteRecipes', JSON.stringify(
+        [...localStorageData, {
+          id: stateType[`id${nameType}`],
+          type,
+          area: type === 'comida' ? stateType.strArea : '',
+          category: stateType.strCategory,
+          alcoholicOrNot: type === 'bebida' ? stateType.strAlcoholic : '',
+          name: stateType[`str${nameType}`],
+          image: stateType[`str${nameType}Thumb`],
+        }],
+      ),
+    )
+  );
+}
+
+export function getFavRecipes() {
+  const fav = localStorage.getItem('favoriteRecipes');
+  const favJSON = JSON.parse(fav);
+  return favJSON;
+}

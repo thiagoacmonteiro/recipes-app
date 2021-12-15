@@ -4,6 +4,7 @@ import CardDetails from '../components/CardDetails';
 import CardRecomended from '../components/CardRecomended';
 import ShareBtn from '../components/ShareBtn';
 import StartRecipeBtn from '../components/StartRecipeBtn';
+import FavoriteBtn from '../components/favoriteBtn';
 
 export default function MealsDetails() {
   const {
@@ -28,9 +29,13 @@ export default function MealsDetails() {
       />
       <ShareBtn />
 
-      <button type="button" data-testid="favorite-btn">
-        Favoritar
-      </button>
+      <FavoriteBtn
+        id={ id }
+        nameType="Meal"
+        fetchType="meal"
+        typeKey="meals"
+        type="comida"
+      />
 
       <StartRecipeBtn
         id={ id }
