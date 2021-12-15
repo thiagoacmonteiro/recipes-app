@@ -34,3 +34,28 @@ export function setRecipesInProgress(type, id) {
     )
   );
 }
+
+export function setFavoriteRecipes(id) {
+  const localStorageData = JSON.parse(localStorage.getItem('favoriteRecipes'));
+
+  if (localStorageData === null) {
+    return (
+      localStorage.setItem(
+        'favoriteRecipes', JSON.stringify([id]),
+      ));
+  }
+
+  return (
+    localStorage.setItem(
+      'favoriteRecipes', JSON.stringify(
+        [...localStorageData, id],
+      ),
+    )
+  );
+}
+
+export function getFavRecipes() {
+  const fav = localStorage.getItem('favoriteRecipes');
+  const favJSON = JSON.parse(fav);
+  return favJSON;
+}

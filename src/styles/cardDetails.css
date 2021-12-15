@@ -20,5 +20,6 @@
 
 .startRecipe {
   bottom: 0;
+  margin-left: 100px;
   position: fixed;
 }
