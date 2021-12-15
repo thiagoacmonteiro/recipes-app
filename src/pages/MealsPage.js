@@ -14,7 +14,7 @@ export default function MealsPage() {
   useEffect(() => {
     didMountFetch('meal')
       .then((result) => setResultFetch(result.meals));
-  }, [setResultFetch]);
+  }, []);
 
   function restrictResult() {
     if (clicked.clickBtn) {

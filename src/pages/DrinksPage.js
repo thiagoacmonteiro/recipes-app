@@ -14,7 +14,7 @@ export default function DrinksPage() {
   useEffect(() => {
     didMountFetch('cocktail')
       .then((result) => setResultFetch(result.drinks));
-  }, [setResultFetch]);
+  }, []);
 
   function restrictResult() {
     if (clicked.clickBtn) {

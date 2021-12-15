@@ -1,33 +1,37 @@
 /* eslint-disable react/jsx-key */
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { didMountFetch } from '../services/fetchApi';
 import '../styles/cardDetails.css';
 
-export default function CardRecomended({ recomended, type }) {
-  const arr = recomended.map((recipe) => (
-    {
-      category: recipe.strCategory,
-      image: recipe[`str${type}Thumb`],
-      name: recipe[`str${type}`],
-    }
-  ));
+export default function CardRecomended({ type, cocktailOrMeal, typeKey }) {
+  const [recomended, setRecomended] = useState([]);
+
+  useEffect(() => {
+    const maxLength = 6;
+    didMountFetch(cocktailOrMeal)
+      .then((response) => {
+        const sliced = response[typeKey].slice(0, maxLength);
+        setRecomended(sliced);
+      });
+  }, []);
 
   return (
     <div className="recomended-container">
       {
-        arr.map((card, index) => (
+        recomended.map((recipe, index) => (
           <div
             className="card-container"
             data-testid={ `${index}-recomendation-card` }
             key={ index }
           >
             <img
-              src={ card.image }
+              src={ recipe[`str${type}Thumb`] }
               alt="First slide"
               className="image-card"
             />
-            <p data-testid={ `${index}-recomendation-title` }>{card.name}</p>
-            <p>{ card.category }</p>
+            <p data-testid={ `${index}-recomendation-title` }>{recipe[`str${type}`]}</p>
+            <p>{ recipe.strCategory }</p>
           </div>
         ))
       }
@@ -36,6 +40,7 @@ export default function CardRecomended({ recomended, type }) {
 }
 
 CardRecomended.propTypes = {
-  recomended: PropTypes.arrayOf(PropTypes.object).isRequired,
+  cocktailOrMeal: PropTypes.string.isRequired,
+  typeKey: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
 };
