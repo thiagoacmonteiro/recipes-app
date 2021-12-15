@@ -6,7 +6,13 @@ import blackHeartIcon from '../images/blackHeartIcon.svg';
 import { setFavoriteRecipes, getFavRecipes } from '../services/localStorage';
 import { fetchById } from '../services/fetchApi';
 
-export default function FavoriteBtn({ id, fetchType, typeKey, type, nameType }) {
+export default function FavoriteBtn({
+  id,
+  fetchType,
+  typeKey,
+  type,
+  nameType,
+}) {
   const [favHeart, setFavHeart] = useState(false);
   const [stateType, setStateType] = useState([]);
   console.log(stateType);
@@ -15,11 +21,9 @@ export default function FavoriteBtn({ id, fetchType, typeKey, type, nameType }) 
       setFavoriteRecipes(stateType, nameType, type);
       setFavHeart(true);
     } else {
-        const filtered = getFavRecipes().filter((e) => e.id !== id);
-        localStorage.setItem(
-            'favoriteRecipes', JSON.stringify(filtered),
-        );
-        setFavHeart(false);
+      const filtered = getFavRecipes().filter((e) => e.id !== id);
+      localStorage.setItem('favoriteRecipes', JSON.stringify(filtered));
+      setFavHeart(false);
     }
   }
 
