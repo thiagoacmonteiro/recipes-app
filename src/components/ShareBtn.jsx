@@ -7,7 +7,6 @@ export default function ShareBtn() {
   const [copiedLink, setCopiedLink] = useState(false);
 
   const location = useLocation();
-  console.log(location);
 
   function handleClick() {
     copy(`http://localhost:3000${location.pathname}`);

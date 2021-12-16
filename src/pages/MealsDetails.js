@@ -1,17 +1,13 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
 import CardDetails from '../components/CardDetails';
 import CardRecomended from '../components/CardRecomended';
+import FavoriteBtn from '../components/FavoriteBtn';
 import ShareBtn from '../components/ShareBtn';
 import StartRecipeBtn from '../components/StartRecipeBtn';
-import FavoriteBtn from '../components/favoriteBtn';
+import useId from '../hooks/useId';
 
 export default function MealsDetails() {
-  const {
-    location: { pathname },
-  } = useHistory();
-
-  const id = pathname.split('/')[2];
+  const id = useId();
 
   return (
     <div>
