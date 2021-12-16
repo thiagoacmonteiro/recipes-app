@@ -65,3 +65,13 @@ export async function fetchById(type, id) {
 
   return response;
 }
+
+// Realiza o fetch à api e retorna um objeto com informações de uma comida ou bebida aleatória
+export async function fetchRandom(type) {
+  const request = await fetch(
+    `https://www.the${type}db.com/api/json/v1/1/random.php`,
+  );
+  const response = await request.json();
+
+  return response;
+}
