@@ -27,6 +27,8 @@ export default function MealsInProgress() {
     return acc;
   }, []);
 
+  console.log(startedMeal);
+
   return (
     <section>
       { startedMeal && (

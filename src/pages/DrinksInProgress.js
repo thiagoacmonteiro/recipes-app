@@ -35,8 +35,8 @@ export default function DrinksInProgress() {
     <div>
       { startedDrink && (
         <>
-          <img src={ startedDrink.strMealThumb } alt="" data-testid="recipe-photo" />
-          <p data-testid="recipe-title">{ startedDrink.strMeal }</p>
+          <img src={ startedDrink.strDrinkThumb } alt="" data-testid="recipe-photo" />
+          <p data-testid="recipe-title">{ startedDrink.strDrink }</p>
           <p data-testid="recipe-category">{ startedDrink.strCategory}</p>
 
           <ul>
@@ -60,10 +60,10 @@ export default function DrinksInProgress() {
 
           <FavoriteBtn
             id={ id }
-            nameType="Meal"
-            fetchType="meal"
-            typeKey="meals"
-            type="comida"
+            nameType="Drink"
+            fetchType="cocktail"
+            typeKey="drinks"
+            type="bebidas"
           />
 
         </>)}
