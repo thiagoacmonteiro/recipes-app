@@ -3,9 +3,11 @@ import FavoriteBtn from '../components/FavoriteBtn';
 import ShareBtn from '../components/ShareBtn';
 import useId from '../hooks/useId';
 import { fetchById } from '../services/fetchApi';
+import '../styles/InProgressPages.css';
 
 export default function MealsInProgress() {
   const [startedMeal, setStartedMeal] = useState({});
+  const [checkIngredients, setCheckIngredients] = useState({});
 
   const id = useId();
 
@@ -27,7 +29,18 @@ export default function MealsInProgress() {
     return acc;
   }, []);
 
-  console.log(startedMeal);
+  const templateCheckIngredients = ingredients.reduce((acc, value) => {
+    acc[value] = false;
+    return acc;
+  }, {});
+
+  useEffect(() => (
+    setCheckIngredients(templateCheckIngredients)),
+  [startedMeal]);
+
+  function checkIngredient({ target: { value } }) {
+    setCheckIngredients({ ...checkIngredients, [value]: !checkIngredients[value] });
+  }
 
   return (
     <section>
@@ -40,11 +53,18 @@ export default function MealsInProgress() {
           <ul>
             {
               ingredients.map((ingredient, index) => (
-                <li key={ index } data-testid={ `${index}-ingredient-step` }>
-                  <label htmlFor={ ingredient }>
-                    {`${ingredient} - ${measures[index]}`}
-                    <input type="checkbox" value={ ingredient } id={ ingredient } />
-                  </label>
+                <li
+                  key={ index }
+                  data-testid={ `${index}-ingredient-step` }
+                  className={ checkIngredients[ingredient] && 'conclud' }
+                >
+                  {`${ingredient} - ${measures[index] ? measures[index] : 'to taste'}`}
+                  <input
+                    type="checkbox"
+                    value={ ingredient }
+                    id={ ingredient }
+                    onClick={ checkIngredient }
+                  />
                 </li>
               ))
             }
