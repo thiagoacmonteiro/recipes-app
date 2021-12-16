@@ -3,9 +3,11 @@ import FavoriteBtn from '../components/FavoriteBtn';
 import ShareBtn from '../components/ShareBtn';
 import useId from '../hooks/useId';
 import { fetchById } from '../services/fetchApi';
+import '../styles/InProgressPages.css';
 
 export default function DrinksInProgress() {
   const [startedDrink, setStartedDrink] = useState({});
+  const [checkIngredients, setCheckIngredients] = useState({});
 
   const id = useId();
 
@@ -21,8 +23,6 @@ export default function DrinksInProgress() {
       return acc;
     }, []);
 
-  console.log(ingredients);
-
   const measures = startedDrink
     && Object.entries(startedDrink).reduce((acc, value) => {
       if (value[0].includes('strMeasure') && value[1] !== ' ' && value[1] !== null) {
@@ -30,6 +30,19 @@ export default function DrinksInProgress() {
       }
       return acc;
     }, []);
+
+  const templateCheckIngredients = ingredients.reduce((acc, value) => {
+    acc[value] = false;
+    return acc;
+  }, {});
+
+  useEffect(() => (
+    setCheckIngredients(templateCheckIngredients)),
+  [startedDrink]);
+
+  function checkIngredient({ target: { value } }) {
+    setCheckIngredients({ ...checkIngredients, [value]: !checkIngredients[value] });
+  }
 
   return (
     <div>
@@ -42,11 +55,19 @@ export default function DrinksInProgress() {
           <ul>
             {
               ingredients.map((ingredient, index) => (
-                <li key={ index } data-testid={ `${index}-ingredient-step` }>
-                  <label htmlFor={ ingredient }>
-                    {`${ingredient} - ${measures[index]}`}
-                    <input type="checkbox" value={ ingredient } id={ ingredient } />
-                  </label>
+                <li
+                  key={ index }
+                  data-testid={ `${index}-ingredient-step` }
+                  className={ checkIngredients[ingredient] && 'conclud' }
+                >
+                  {`${ingredient} - ${measures[index] ? measures[index] : 'to taste'}`}
+                  <input
+                    type="checkbox"
+                    value={ ingredient }
+                    id={ ingredient }
+                    onClick={ checkIngredient }
+
+                  />
                 </li>
               ))
             }
