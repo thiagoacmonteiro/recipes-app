@@ -1,18 +1,14 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
 import CardDetails from '../components/CardDetails';
 import CardRecomended from '../components/CardRecomended';
 import '../styles/cardDetails.css';
 import StartRecipeBtn from '../components/StartRecipeBtn';
 import ShareBtn from '../components/ShareBtn';
-import FavoriteBtn from '../components/favoriteBtn';
+import FavoriteBtn from '../components/FavoriteBtn';
+import useId from '../hooks/useId';
 
 export default function DrinksDetails() {
-  const {
-    location: { pathname },
-  } = useHistory();
-
-  const id = pathname.split('/')[2];
+  const id = useId();
 
   return (
     <div>

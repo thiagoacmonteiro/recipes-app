@@ -15,7 +15,7 @@ export default function FavoriteBtn({
 }) {
   const [favHeart, setFavHeart] = useState(false);
   const [stateType, setStateType] = useState([]);
-  console.log(stateType);
+
   function handleClick() {
     if (getFavRecipes() === null || !getFavRecipes().some((e) => e.id === id)) {
       setFavoriteRecipes(stateType, nameType, type);

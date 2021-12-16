@@ -29,7 +29,10 @@ export function setRecipesInProgress(type, id) {
   return (
     localStorage.setItem(
       'inProgressRecipes', JSON.stringify(
-        { ...inProgressRecipes, [type]: { ...inProgressRecipes[type], [id]: [] } },
+        {
+          ...inProgressRecipes,
+          [type]: { ...inProgressRecipes[type], [id]: [] },
+        },
       ),
     )
   );

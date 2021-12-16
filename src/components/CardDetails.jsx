@@ -17,7 +17,7 @@ export default function CardDetails({ fetchType, id, type, typeKey, category }) 
   }, []);
 
   const measures = stateType && Object.entries(stateType).reduce((acc, value) => {
-    if (value[0].includes('strMeasure') && value[1] !== '' && value[1] !== null) {
+    if (value[0].includes('strMeasure') && value[1] !== ' ' && value[1] !== null) {
       acc.push(value[1]);
     }
     return acc;
