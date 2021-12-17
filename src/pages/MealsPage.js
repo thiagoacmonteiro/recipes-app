@@ -12,8 +12,10 @@ export default function MealsPage() {
   const limit = 12;
 
   useEffect(() => {
-    didMountFetch('meal')
-      .then((result) => setResultFetch(result.meals));
+    if (resultFetch.length === 0) {
+      didMountFetch('meal')
+        .then((result) => setResultFetch(result.meals));
+    }
   }, []);
 
   function restrictResult() {

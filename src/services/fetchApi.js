@@ -75,3 +75,12 @@ export async function fetchRandom(type) {
 
   return response;
 }
+
+export async function fetchIngredientsList(type) {
+  const request = await fetch(
+    `https://www.the${type}db.com/api/json/v1/1/list.php?i=list`,
+  );
+  const response = await request.json();
+
+  return response;
+}

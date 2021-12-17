@@ -12,8 +12,10 @@ export default function DrinksPage() {
   const limit = 12;
 
   useEffect(() => {
-    didMountFetch('cocktail')
-      .then((result) => setResultFetch(result.drinks));
+    if (resultFetch.length === 0) {
+      didMountFetch('cocktail')
+        .then((result) => setResultFetch(result.drinks));
+    }
   }, []);
 
   function restrictResult() {
