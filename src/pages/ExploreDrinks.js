@@ -1,5 +1,5 @@
 import React from 'react';
-import ExploreDrinkBtn from '../components/explorDrinkBtn';
+import ExploreDrinkBtn from '../components/ExploreDrinkBtn';
 import Header from '../components/Header';
 import LowerMenu from '../components/LowerMenu';
 
