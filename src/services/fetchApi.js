@@ -84,3 +84,21 @@ export async function fetchIngredientsList(type) {
 
   return response;
 }
+
+export async function fetchAreas() {
+  const request = await fetch(
+    'https://www.themealdb.com/api/json/v1/1/list.php?a=list',
+  );
+  const response = await request.json();
+
+  return response;
+}
+
+export async function fetchByArea(area) {
+  const request = await fetch(
+    `https://www.themealdb.com/api/json/v1/1/filter.php?a=${area}`,
+  );
+  const response = await request.json();
+
+  return response;
+}
