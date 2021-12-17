@@ -1,5 +1,5 @@
 import React from 'react';
-import CardIngredientsDrinks from '../components/cardIngredientsDrinks';
+import CardIngredients from '../components/CardIngredients';
 import Header from '../components/Header';
 import LowerMenu from '../components/LowerMenu';
 
@@ -9,7 +9,7 @@ export default function ExploreDrinksIngredients() {
       <Header
         text="Explorar Ingredientes"
       />
-      <CardIngredientsDrinks type="cocktail" />
+      <CardIngredients type="cocktail" />
       <LowerMenu />
     </div>
   );
