@@ -62,11 +62,6 @@ export default function CardDetails({ fetchType, id, type, typeKey, category }) 
 }
 
 CardDetails.propTypes = {
-  object: PropTypes.shape({
-    strCategory: PropTypes.string,
-    strInstructions: PropTypes.string,
-    strYoutube: PropTypes.string,
-  }).isRequired,
   category: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   fetchType: PropTypes.string.isRequired,

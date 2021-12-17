@@ -8,14 +8,7 @@ export default function ExploreFoodBtn({ testid, explore, name }) {
   const [random, setRandom] = useState('');
 
   useEffect(() => {
-    async function fetchData() {
-      const { meals } = await fetchRandom('meal');
-      setRandom(meals[0].idMeal);
-    }
-    fetchData();
-    return () => {
-      setRandom('');
-    };
+    fetchRandom('meal').then((response) => setRandom(response.meals[0].idMeal));
   }, []);
 
   function handleClick() {

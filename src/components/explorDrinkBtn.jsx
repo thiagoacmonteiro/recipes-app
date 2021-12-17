@@ -5,17 +5,10 @@ import { fetchRandom } from '../services/fetchApi';
 
 export default function ExploreDrinkBtn({ testid, explore, name }) {
   const history = useHistory();
-  const [random, setRandom] = useState('oi');
+  const [random, setRandom] = useState('');
 
   useEffect(() => {
-    async function fetchData() {
-      const { drinks } = await fetchRandom('cocktail');
-      setRandom(drinks[0].idDrink);
-    }
-    fetchData();
-    return () => {
-      setRandom('');
-    };
+    fetchRandom('cocktail').then((response) => setRandom(response.drinks[0].idDrink));
   }, []);
 
   function handleClick() {
