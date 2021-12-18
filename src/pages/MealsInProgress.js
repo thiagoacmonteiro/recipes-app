@@ -41,6 +41,7 @@ export default function MealsInProgress() {
 
   function handleClick({ target }) {
     console.log(target);
+    console.log(checkedIngredients);
     setCheckIngredients(
       { ...checkIngredients, [target.value]: !checkIngredients[target.value] },
     );
