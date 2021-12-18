@@ -44,10 +44,10 @@ export default function Routes() {
         component={ ExploreDrinksIngredients }
       />
       <Route exact path="/explorar/comidas/area" component={ ExploreMealsArea } />
-      <Route path="*" component={ NotFound } />
       <Route exact path="/perfil" component={ Profile } />
       <Route exact path="/receitas-feitas" component={ RecipesMade } />
       <Route exact path="/receitas-favoritas" component={ FavoriteRecipes } />
+      <Route path="*" component={ NotFound } />
     </Switch>
   );
 }

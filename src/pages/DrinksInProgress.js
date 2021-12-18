@@ -4,15 +4,23 @@ import ShareBtn from '../components/ShareBtn';
 import useId from '../hooks/useId';
 import { fetchById } from '../services/fetchApi';
 import '../styles/InProgressPages.css';
+import { setIngredients, getIngredients } from '../services/localStorage';
 
 export default function DrinksInProgress() {
   const [startedDrink, setStartedDrink] = useState({});
+  const [checkedIngredients, setCheckedIngredients] = useState([]);
   const [checkIngredients, setCheckIngredients] = useState({});
 
   const id = useId();
 
   useEffect(() => {
     fetchById('cocktail', id).then(({ drinks }) => setStartedDrink({ ...drinks[0] }));
+  }, []);
+
+  useEffect(() => {
+    if (JSON.parse(localStorage.getItem('inProgressRecipes')) !== null) {
+      setCheckedIngredients(getIngredients('cocktails', id));
+    }
   }, []);
 
   const ingredients = startedDrink
@@ -31,17 +39,15 @@ export default function DrinksInProgress() {
       return acc;
     }, []);
 
-  const templateCheckIngredients = ingredients.reduce((acc, value) => {
-    acc[value] = false;
-    return acc;
-  }, {});
-
-  useEffect(() => (
-    setCheckIngredients(templateCheckIngredients)),
-  [startedDrink]);
-
-  function checkIngredient({ target: { value } }) {
-    setCheckIngredients({ ...checkIngredients, [value]: !checkIngredients[value] });
+  function handleClick({ target }) {
+    console.log(target);
+    setCheckIngredients(
+      { ...checkIngredients, [target.value]: !checkIngredients[target.value] },
+    );
+    if (JSON.parse(localStorage.getItem('inProgressRecipes')) !== null) {
+      setIngredients('cocktails', id, target.name);
+      setCheckedIngredients(getIngredients('cocktails', id));
+    }
   }
 
   return (
@@ -64,9 +70,10 @@ export default function DrinksInProgress() {
                   <input
                     type="checkbox"
                     value={ ingredient }
-                    id={ ingredient }
-                    onClick={ checkIngredient }
-
+                    name={ ingredient }
+                    onChange={ handleClick }
+                    checked
+                    // defaultChecked={ checkedIngredients.includes(ingredient) && 'checked' }
                   />
                 </li>
               ))

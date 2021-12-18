@@ -38,6 +38,28 @@ export function setRecipesInProgress(type, id) {
   );
 }
 
+export function setIngredients(type, id, ingredient) {
+  const localStorageData = localStorage.getItem('inProgressRecipes');
+  const inProgressRecipes = JSON.parse(localStorageData);
+
+  return (
+    localStorage.setItem(
+      'inProgressRecipes', JSON.stringify(
+        {
+          ...inProgressRecipes,
+          [type]: {
+            ...inProgressRecipes[type],
+            [id]: [...inProgressRecipes[type][id], ingredient] },
+        },
+      ),
+    )
+  );
+}
+
+export function getIngredients(type, id) {
+  return JSON.parse(localStorage.getItem('inProgressRecipes'))[type][id];
+}
+
 export function setFavoriteRecipes(stateType, nameType, type) {
   const localStorageData = JSON.parse(localStorage.getItem('favoriteRecipes'));
 

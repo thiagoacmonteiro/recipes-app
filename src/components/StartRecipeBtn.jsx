@@ -20,8 +20,10 @@ export default function StartRecipeBtn({ routeType, type, id }) {
     setButtonTextFunction();
   }, []);
 
-  function handleClick() {
-    setRecipesInProgress(type, id);
+  function handleClick({ target }) {
+    if (target.value === 'Iniciar Receita') {
+      setRecipesInProgress(type, id);
+    }
     history.push(`/${routeType}/${id}/in-progress`);
   }
 
@@ -31,6 +33,7 @@ export default function StartRecipeBtn({ routeType, type, id }) {
       data-testid="start-recipe-btn"
       className="startRecipe"
       onClick={ handleClick }
+      value={ buttonText }
     >
       { buttonText }
     </button>
