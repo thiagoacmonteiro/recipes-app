@@ -4,9 +4,11 @@ import ShareBtn from '../components/ShareBtn';
 import useId from '../hooks/useId';
 import { fetchById } from '../services/fetchApi';
 import '../styles/InProgressPages.css';
+import { setIngredients, getIngredients } from '../services/localStorage';
 
 export default function MealsInProgress() {
   const [startedMeal, setStartedMeal] = useState({});
+  const [checkedIngredients, setCheckedIngredients] = useState([]);
   const [checkIngredients, setCheckIngredients] = useState({});
 
   const id = useId();
@@ -15,31 +17,37 @@ export default function MealsInProgress() {
     fetchById('meal', id).then(({ meals }) => setStartedMeal({ ...meals[0] }));
   }, []);
 
-  const ingredients = startedMeal && Object.entries(startedMeal).reduce((acc, value) => {
-    if (value[0].includes('strIngredient') && value[1] !== '' && value[1] !== null) {
-      acc.push(value[1]);
+  useEffect(() => {
+    if (JSON.parse(localStorage.getItem('inProgressRecipes')) !== null) {
+      setCheckedIngredients(getIngredients('meals', id));
     }
-    return acc;
   }, []);
 
-  const measures = startedMeal && Object.entries(startedMeal).reduce((acc, value) => {
-    if (value[0].includes('strMeasure') && value[1] !== ' ' && value[1] !== null) {
-      acc.push(value[1]);
+  const ingredients = startedMeal
+    && Object.entries(startedMeal).reduce((acc, value) => {
+      if (value[0].includes('strIngredient') && value[1] !== '' && value[1] !== null) {
+        acc.push(value[1]);
+      }
+      return acc;
+    }, []);
+
+  const measures = startedMeal
+    && Object.entries(startedMeal).reduce((acc, value) => {
+      if (value[0].includes('strMeasure') && value[1] !== ' ' && value[1] !== null) {
+        acc.push(value[1]);
+      }
+      return acc;
+    }, []);
+
+  function handleClick({ target }) {
+    console.log(target);
+    setCheckIngredients(
+      { ...checkIngredients, [target.value]: !checkIngredients[target.value] },
+    );
+    if (JSON.parse(localStorage.getItem('inProgressRecipes')) !== null) {
+      setIngredients('meals', id, target.name);
+      setCheckedIngredients(getIngredients('meals', id));
     }
-    return acc;
-  }, []);
-
-  const templateCheckIngredients = ingredients.reduce((acc, value) => {
-    acc[value] = false;
-    return acc;
-  }, {});
-
-  useEffect(() => (
-    setCheckIngredients(templateCheckIngredients)),
-  [startedMeal]);
-
-  function checkIngredient({ target: { value } }) {
-    setCheckIngredients({ ...checkIngredients, [value]: !checkIngredients[value] });
   }
 
   return (
@@ -62,8 +70,10 @@ export default function MealsInProgress() {
                   <input
                     type="checkbox"
                     value={ ingredient }
-                    id={ ingredient }
-                    onClick={ checkIngredient }
+                    name={ ingredient }
+                    onClick={ handleClick }
+                    checked
+                    // defaultChecked={ checkedIngredients.includes(ingredient) && 'checked' }
                   />
                 </li>
               ))
