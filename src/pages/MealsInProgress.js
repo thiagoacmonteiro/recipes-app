@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import FavoriteBtn from '../components/FavoriteBtn';
 import ShareBtn from '../components/ShareBtn';
 import useId from '../hooks/useId';
@@ -9,19 +9,18 @@ import { setIngredients, getIngredients } from '../services/localStorage';
 export default function MealsInProgress() {
   const [startedMeal, setStartedMeal] = useState({});
   const [checkedIngredients, setCheckedIngredients] = useState([]);
-  const [checkIngredients, setCheckIngredients] = useState({});
 
   const id = useId();
 
   useEffect(() => {
     fetchById('meal', id).then(({ meals }) => setStartedMeal({ ...meals[0] }));
+    setCheckedIngredients(getIngredients('meals', id));
   }, []);
 
   useEffect(() => {
-    if (JSON.parse(localStorage.getItem('inProgressRecipes')) !== null) {
-      setCheckedIngredients(getIngredients('meals', id));
-    }
-  }, []);
+    setIngredients('meals', id, checkedIngredients);
+    // console.log(checkedIngredients, 'segundo');
+  }, [checkedIngredients, setIngredients]);
 
   const ingredients = startedMeal
     && Object.entries(startedMeal).reduce((acc, value) => {
@@ -39,17 +38,13 @@ export default function MealsInProgress() {
       return acc;
     }, []);
 
-  function handleClick({ target }) {
-    console.log(target);
-    console.log(checkedIngredients);
-    setCheckIngredients(
-      { ...checkIngredients, [target.value]: !checkIngredients[target.value] },
-    );
-    if (JSON.parse(localStorage.getItem('inProgressRecipes')) !== null) {
-      setIngredients('meals', id, target.name);
-      setCheckedIngredients(getIngredients('meals', id));
-    }
-  }
+  const handleClick = useCallback(({ target }) => {
+    if (checkedIngredients.includes(target.name)) {
+      setCheckedIngredients(checkedIngredients.filter((ingredient) => (
+        ingredient !== target.name
+      )));
+    } else setCheckedIngredients([...checkedIngredients, target.name]);
+  }, [checkedIngredients, setCheckedIngredients, id]);
 
   return (
     <section>
@@ -62,21 +57,25 @@ export default function MealsInProgress() {
           <ul>
             {
               ingredients.map((ingredient, index) => (
-                <li
-                  key={ index }
+                <label
+                  htmlFor={ ingredient }
                   data-testid={ `${index}-ingredient-step` }
-                  className={ checkIngredients[ingredient] && 'conclud' }
+                  className={ checkedIngredients.includes(ingredient) && 'conclud' }
+                  key={ ingredient }
                 >
                   {`${ingredient} - ${measures[index] ? measures[index] : 'to taste'}`}
+                  {console.log('tela')}
                   <input
                     type="checkbox"
                     value={ ingredient }
                     name={ ingredient }
-                    onClick={ handleClick }
-                    checked
-                    // defaultChecked={ checkedIngredients.includes(ingredient) && 'checked' }
+                    onChange={ handleClick }
+                    id={ ingredient }
+                    checked={
+                      checkedIngredients.includes(ingredient)
+                    }
                   />
-                </li>
+                </label>
               ))
             }
           </ul>

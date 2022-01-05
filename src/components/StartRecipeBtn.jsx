@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router';
-import { setRecipesInProgress } from '../services/localStorage';
+// import { setRecipesInProgress } from '../services/localStorage';
 
 export default function StartRecipeBtn({ routeType, type, id }) {
   const [buttonText, setButtonText] = useState('Iniciar Receita');
@@ -20,10 +20,7 @@ export default function StartRecipeBtn({ routeType, type, id }) {
     setButtonTextFunction();
   }, []);
 
-  function handleClick({ target }) {
-    if (target.value === 'Iniciar Receita') {
-      setRecipesInProgress(type, id);
-    }
+  function handleClick() {
     history.push(`/${routeType}/${id}/in-progress`);
   }
 
