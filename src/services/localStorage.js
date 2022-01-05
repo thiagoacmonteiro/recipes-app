@@ -18,13 +18,20 @@ export function getUser() {
 export function setRecipesInProgress(type, id) {
   const localStorageData = localStorage.getItem('inProgressRecipes');
   const inProgressRecipes = JSON.parse(localStorageData);
+  console.log(inProgressRecipes);
 
-  if (inProgressRecipes === null) {
+  if (localStorageData === null) {
     return (
       localStorage.setItem(
-        'inProgressRecipes', JSON.stringify({ [type]: { [id]: [] } }),
+        'inProgressRecipes', JSON.stringify({
+          meals: { },
+          cocktails: { },
+          [type]: { [id]: [] },
+        }),
       ));
   }
+
+  console.log(localStorageData);
 
   return (
     localStorage.setItem(
@@ -39,49 +46,25 @@ export function setRecipesInProgress(type, id) {
 }
 
 export function getIngredients(type, id) {
-  const thisExist = localStorage.getItem('inProgressRecipes');
-  console.log(thisExist);
-  if (thisExist === null) setRecipesInProgress(type, id);
-
-  // if (thisExist === null) {
-  //   console.log('teste');
-  //   return localStorage.setItem(
-  //     'inProgressRecipes', JSON.stringify({ meals: {}, cocktail: {}, [type]: { id } }),
-  //   );
-  // }
   return JSON.parse(localStorage.getItem('inProgressRecipes'))[type][id];
 }
 
 export function setIngredients(type, id, ingredients) {
-  const inProgressRecipes = getIngredients(type, id);
+  const inProgressRecipes = JSON.parse(localStorage.getItem('inProgressRecipes'));
 
   return (
     localStorage.setItem(
       'inProgressRecipes', JSON.stringify(
         {
-          // ...inProgressRecipes,
+          ...inProgressRecipes,
           [type]: {
             ...inProgressRecipes[type],
-            // [id]: Object.values(recipe)[0],
             [id]: ingredients,
           },
         },
       ),
     )
   );
-
-//   // return (
-//   //   localStorage.setItem(
-//   //     'inProgressRecipes', JSON.stringify(
-//   //       {
-//   //         ...inProgressRecipes,
-//   //         [type]: {
-//   //           ...inProgressRecipes[type],
-//   //           [id]: [...inProgressRecipes[type][id], ingredient] },
-//   //       },
-//   //     ),
-//   //   )
-//   // );
 }
 
 export function setFavoriteRecipes(stateType, nameType, type) {
