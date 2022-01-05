@@ -6,6 +6,7 @@ import { fetchById } from '../services/fetchApi';
 import '../styles/InProgressPages.css';
 import { setIngredients, getIngredients,
   setRecipesInProgress } from '../services/localStorage';
+import FinishBtn from '../components/FinishBtn';
 
 export default function DrinksInProgress() {
   const [startedDrink, setStartedDrink] = useState({});
@@ -84,9 +85,10 @@ export default function DrinksInProgress() {
             }
           </ul>
           <p data-testid="instructions">{startedDrink.strInstructions}</p>
-          <button type="button" data-testid="finish-recipe-btn">
-            Finish
-          </button>
+          <FinishBtn
+            ingredients={ ingredients }
+            localIngredients={ checkedIngredients }
+          />
 
           <ShareBtn />
 
