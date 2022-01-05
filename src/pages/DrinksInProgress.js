@@ -95,7 +95,7 @@ export default function DrinksInProgress() {
             nameType="Drink"
             fetchType="cocktail"
             typeKey="drinks"
-            type="bebidas"
+            type="bebida"
           />
 
         </>)}
