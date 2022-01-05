@@ -9,7 +9,9 @@ export default function ShareBtn() {
   const location = useLocation();
 
   function handleClick() {
-    copy(`http://localhost:3000${location.pathname}`);
+    const url = `http://localhost:3000${location.pathname}`.split('/in');
+    console.log(url[0]);
+    copy(url[0]);
     setCopiedLink(true);
   }
 
