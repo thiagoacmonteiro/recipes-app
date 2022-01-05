@@ -6,6 +6,7 @@ import { fetchById } from '../services/fetchApi';
 import '../styles/InProgressPages.css';
 import { setIngredients, getIngredients,
   setRecipesInProgress } from '../services/localStorage';
+import FinishBtn from '../components/FinishBtn';
 
 export default function MealsInProgress() {
   const [startedMeal, setStartedMeal] = useState({});
@@ -71,7 +72,6 @@ export default function MealsInProgress() {
                   key={ ingredient }
                 >
                   {`${ingredient} - ${measures[index] ? measures[index] : 'to taste'}`}
-                  {console.log('tela')}
                   <input
                     type="checkbox"
                     value={ ingredient }
@@ -87,9 +87,10 @@ export default function MealsInProgress() {
             }
           </ul>
           <p data-testid="instructions">{startedMeal.strInstructions}</p>
-          <button type="button" data-testid="finish-recipe-btn">
-            Finish
-          </button>
+          <FinishBtn
+            ingredients={ ingredients }
+            localIngredients={ checkedIngredients }
+          />
 
           <ShareBtn />
 
