@@ -1,27 +1,33 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import FavoriteBtn from '../components/FavoriteBtn';
 import ShareBtn from '../components/ShareBtn';
 import useId from '../hooks/useId';
 import { fetchById } from '../services/fetchApi';
 import '../styles/InProgressPages.css';
-import { setIngredients, getIngredients } from '../services/localStorage';
+import { setIngredients, getIngredients,
+  setRecipesInProgress } from '../services/localStorage';
 
 export default function DrinksInProgress() {
   const [startedDrink, setStartedDrink] = useState({});
   const [checkedIngredients, setCheckedIngredients] = useState([]);
-  const [checkIngredients, setCheckIngredients] = useState({});
 
   const id = useId();
 
   useEffect(() => {
     fetchById('cocktail', id).then(({ drinks }) => setStartedDrink({ ...drinks[0] }));
+    if (localStorage.getItem('inProgressRecipes') !== null
+    && getIngredients('cocktails', id) !== undefined) {
+      setCheckedIngredients(getIngredients('cocktails', id));
+    } else {
+      setRecipesInProgress('cocktails', id);
+    }
   }, []);
 
   useEffect(() => {
-    if (JSON.parse(localStorage.getItem('inProgressRecipes')) !== null) {
-      setCheckedIngredients(getIngredients('cocktails', id));
+    if (localStorage.getItem('inProgressRecipes') !== null) {
+      setIngredients('cocktails', id, checkedIngredients);
     }
-  }, []);
+  }, [checkedIngredients, setIngredients]);
 
   const ingredients = startedDrink
     && Object.entries(startedDrink).reduce((acc, value) => {
@@ -39,17 +45,13 @@ export default function DrinksInProgress() {
       return acc;
     }, []);
 
-  function handleClick({ target }) {
-    console.log(target);
-    console.log(checkedIngredients);
-    setCheckIngredients(
-      { ...checkIngredients, [target.value]: !checkIngredients[target.value] },
-    );
-    if (JSON.parse(localStorage.getItem('inProgressRecipes')) !== null) {
-      setIngredients('cocktails', id, target.name);
-      setCheckedIngredients(getIngredients('cocktails', id));
-    }
-  }
+  const handleClick = useCallback(({ target }) => {
+    if (checkedIngredients.includes(target.name)) {
+      setCheckedIngredients(checkedIngredients.filter((ingredient) => (
+        ingredient !== target.name
+      )));
+    } else setCheckedIngredients([...checkedIngredients, target.name]);
+  }, [checkedIngredients, setCheckedIngredients, id]);
 
   return (
     <div>
@@ -65,7 +67,7 @@ export default function DrinksInProgress() {
                 <li
                   key={ index }
                   data-testid={ `${index}-ingredient-step` }
-                  className={ checkIngredients[ingredient] && 'conclud' }
+                  className={ checkedIngredients.includes(ingredient) && 'conclud' }
                 >
                   {`${ingredient} - ${measures[index] ? measures[index] : 'to taste'}`}
                   <input
@@ -73,8 +75,9 @@ export default function DrinksInProgress() {
                     value={ ingredient }
                     name={ ingredient }
                     onChange={ handleClick }
-                    checked
-                    // defaultChecked={ checkedIngredients.includes(ingredient) && 'checked' }
+                    checked={
+                      checkedIngredients.includes(ingredient)
+                    }
                   />
                 </li>
               ))

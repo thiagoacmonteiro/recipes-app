@@ -4,7 +4,8 @@ import ShareBtn from '../components/ShareBtn';
 import useId from '../hooks/useId';
 import { fetchById } from '../services/fetchApi';
 import '../styles/InProgressPages.css';
-import { setIngredients, getIngredients } from '../services/localStorage';
+import { setIngredients, getIngredients,
+  setRecipesInProgress } from '../services/localStorage';
 
 export default function MealsInProgress() {
   const [startedMeal, setStartedMeal] = useState({});
@@ -14,12 +15,18 @@ export default function MealsInProgress() {
 
   useEffect(() => {
     fetchById('meal', id).then(({ meals }) => setStartedMeal({ ...meals[0] }));
-    setCheckedIngredients(getIngredients('meals', id));
+    if (localStorage.getItem('inProgressRecipes') !== null
+    && getIngredients('meals', id) !== undefined) {
+      setCheckedIngredients(getIngredients('meals', id));
+    } else {
+      setRecipesInProgress('meals', id);
+    }
   }, []);
 
   useEffect(() => {
-    setIngredients('meals', id, checkedIngredients);
-    // console.log(checkedIngredients, 'segundo');
+    if (localStorage.getItem('inProgressRecipes') !== null) {
+      setIngredients('meals', id, checkedIngredients);
+    }
   }, [checkedIngredients, setIngredients]);
 
   const ingredients = startedMeal
