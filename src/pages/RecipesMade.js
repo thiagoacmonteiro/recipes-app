@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Header from '../components/Header';
-import ShareBtn from '../components/ShareBtn';
+import ShareBtnDoneRecipes from '../components/ShareBtnDoneRecipes';
 
 export default function RecipesMade() {
   const [recipes, setRecipes] = useState([]);
@@ -41,7 +41,7 @@ export default function RecipesMade() {
           <p data-testid={ `${index}-horizontal-done-date` }>
             {`Date: ${recipe.doneDate}`}
           </p>
-          <ShareBtn
+          <ShareBtnDoneRecipes
             testId={ `${index}-horizontal-share-btn` }
             id={ recipe.id }
             type={ recipe.type === 'comida' ? 'comidas' : 'bebidas' }
