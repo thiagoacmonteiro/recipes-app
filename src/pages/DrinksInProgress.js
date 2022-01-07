@@ -95,7 +95,11 @@ export default function DrinksInProgress() {
             localIngredients={ checkedIngredients }
           />
 
-          <ShareBtn testId="share-btn" />
+          <ShareBtn
+            testId="share-btn"
+            id={ id }
+            type="bebidas"
+          />
 
           <FavoriteBtn
             id={ id }

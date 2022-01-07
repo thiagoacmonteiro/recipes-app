@@ -1,18 +1,14 @@
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
-import { useLocation } from 'react-router';
 import copy from 'clipboard-copy';
 import shareIcon from '../images/shareIcon.svg';
 
-export default function ShareBtn({ testId }) {
+export default function ShareBtn({ testId, id, type }) {
   const [copiedLink, setCopiedLink] = useState(false);
 
-  const location = useLocation();
-
   function handleClick() {
-    const url = `http://localhost:3000${location.pathname}`.split('/in');
-    console.log(url[0]);
-    copy(url[0]);
+    const url = `http://localhost:3000/${type}/${id}`;
+    copy(url);
     setCopiedLink(true);
   }
 
@@ -21,18 +17,20 @@ export default function ShareBtn({ testId }) {
       { copiedLink && (
         <p>Link copiado!</p>
       ) }
-      <button
+      <input
         data-testid={ testId }
-        type="button"
+        type="image"
         onClick={ handleClick }
         value="compartilhar"
-      >
-        <img src={ shareIcon } alt="shareIcon" />
-      </button>
+        src={ shareIcon }
+        alt="shareIcon"
+      />
     </div>
   );
 }
 
 ShareBtn.propTypes = {
+  id: PropTypes.string.isRequired,
   testId: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
 };

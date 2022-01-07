@@ -20,6 +20,7 @@ function FinishBtn({
   const month = completeDate.getMonth();
   const year = completeDate.getFullYear();
   const date = `${day}/${month + 1}/${year}`;
+  console.log(recipeData);
 
   function handleClick() {
     setDoneRecipes(recipeData, nameType, type, date);
