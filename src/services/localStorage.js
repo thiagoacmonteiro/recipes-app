@@ -124,7 +124,7 @@ export function setDoneRecipes(recipeData, nameType, type, date) {
           name: recipeData[`str${nameType}`],
           image: recipeData[`str${nameType}Thumb`],
           doneDate: date,
-          tags: recipeData.strTags,
+          tags: recipeData.strTags !== null ? recipeData.strTags.split(',') : [],
         }]),
       ));
   }

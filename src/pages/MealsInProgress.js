@@ -97,7 +97,7 @@ export default function MealsInProgress() {
             localIngredients={ checkedIngredients }
           />
 
-          <ShareBtn />
+          <ShareBtn testId="share-btn" />
 
           <FavoriteBtn
             id={ id }
