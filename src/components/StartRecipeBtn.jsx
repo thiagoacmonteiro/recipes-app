@@ -5,9 +5,12 @@ import { useHistory } from 'react-router';
 
 export default function StartRecipeBtn({ routeType, type, id }) {
   const [buttonText, setButtonText] = useState('Iniciar Receita');
+  const [doneIds, setDoneIds] = useState([]);
   const history = useHistory();
 
   const localStorageData = JSON.parse(localStorage.getItem('inProgressRecipes'));
+  const doneRecipes = JSON.parse(localStorage.getItem('doneRecipes'));
+  const doneRecipesIds = doneRecipes !== null && doneRecipes.map((recipe) => recipe.id);
 
   function setButtonTextFunction() {
     if (localStorageData !== null && Object.keys(localStorageData).includes(type)) {
@@ -18,6 +21,7 @@ export default function StartRecipeBtn({ routeType, type, id }) {
 
   useEffect(() => {
     setButtonTextFunction();
+    if (doneRecipes !== null) setDoneIds(doneRecipesIds);
   }, []);
 
   function handleClick() {
@@ -25,15 +29,19 @@ export default function StartRecipeBtn({ routeType, type, id }) {
   }
 
   return (
-    <button
-      type="button"
-      data-testid="start-recipe-btn"
-      className="startRecipe"
-      onClick={ handleClick }
-      value={ buttonText }
-    >
-      { buttonText }
-    </button>
+    <div>
+      { !doneIds.includes(id)
+      && (
+        <button
+          type="button"
+          data-testid="start-recipe-btn"
+          className="startRecipe"
+          onClick={ handleClick }
+          value={ buttonText }
+        >
+          { buttonText }
+        </button>)}
+    </div>
   );
 }
 
