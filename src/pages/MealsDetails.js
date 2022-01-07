@@ -23,7 +23,7 @@ export default function MealsDetails() {
         typeKey="drinks"
         type="Drink"
       />
-      <ShareBtn />
+      <ShareBtn testId="share-btn" />
 
       <FavoriteBtn
         id={ id }

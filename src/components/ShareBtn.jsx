@@ -1,9 +1,10 @@
+import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { useLocation } from 'react-router';
 import copy from 'clipboard-copy';
 import shareIcon from '../images/shareIcon.svg';
 
-export default function ShareBtn() {
+export default function ShareBtn({ testId }) {
   const [copiedLink, setCopiedLink] = useState(false);
 
   const location = useLocation();
@@ -21,7 +22,7 @@ export default function ShareBtn() {
         <p>Link copiado!</p>
       ) }
       <button
-        data-testid="share-btn"
+        data-testid={ testId }
         type="button"
         onClick={ handleClick }
         value="compartilhar"
@@ -31,3 +32,7 @@ export default function ShareBtn() {
     </div>
   );
 }
+
+ShareBtn.propTypes = {
+  testId: PropTypes.string.isRequired,
+};
