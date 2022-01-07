@@ -56,7 +56,7 @@ export default function RecipesMade() {
           ))}
         </div>
       )) }
-      <p> Recipes Made </p>
+      <p> Recipes Madee </p>
     </div>
   );
 }
