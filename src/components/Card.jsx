@@ -7,13 +7,26 @@ export default function Card({ index, cardName, img, recipeId, path }) {
     <Link
       to={ `/${path}/${recipeId}` }
     >
-      <section data-testid={ `${index}-recipe-card` }>
+      <section
+        className=" my-4 h-60 w-60 rounded-lg bg-white flex
+        content-center flex-col  mb-4 mx-auto"
+        data-testid={ `${index}-recipe-card` }
+      >
         <img
           src={ img }
           alt="imagem da receita"
           data-testid={ `${index}-card-img` }
+          className="rounded-lg w-3/4 mt-2 mx-auto"
         />
-        <p data-testid={ `${index}-card-name` }>{cardName}</p>
+        <p
+          data-testid={ `${index}-card-name` }
+          className="text-center font-bold text-black
+          no-underline mt-3
+          md:underline"
+        >
+          {cardName}
+
+        </p>
       </section>
     </Link>
   );

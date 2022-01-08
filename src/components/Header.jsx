@@ -22,7 +22,7 @@ export default function Header({ searchIcon, text }) {
             data-testid="profile-top-btn"
           />
         </Link>
-        <div data-testid="page-title">{text}</div>
+        <h1 className="text-white font-bold" data-testid="page-title">{text}</h1>
         {searchIcon && (
           <button onClick={ renderSearchInput } type="button" className="search-btn">
             <img src={ searchIcon } alt="searchIcon" data-testid="search-top-btn" />

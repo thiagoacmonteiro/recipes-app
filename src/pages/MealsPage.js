@@ -26,7 +26,9 @@ export default function MealsPage() {
   }
 
   return (
-    <div>
+    <div
+      className="bg-gray-900"
+    >
       <Header searchIcon={ searchIcon } text="Comidas" />
       <CategoryFilters type="meal" objectKey="meals" />
       {resultFetch === null

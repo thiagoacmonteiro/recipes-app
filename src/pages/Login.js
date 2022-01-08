@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import { useHistory } from 'react-router';
-import { HiAtSymbol, HiOutlineEye } from 'react-icons/hi';
 import Context from '../contexts/Context';
 import { setTokens, setUser } from '../services/localStorage';
 import '../index.css';
@@ -33,16 +32,10 @@ export default function Login() {
       flex-col
       justify-center
       content-center
-      bg-gray-800
-      h-screen"
+      bg-gray-900
+      h-screen
+      "
     >
-      <img
-        src={ imgLogin }
-        alt="cozinheiro"
-        className="opacity-7
-        mt-2
-        w-44"
-      />
       <div
         className="
         flex
@@ -50,80 +43,82 @@ export default function Login() {
         items-center
         justify-center
         align-super
-        w-44
         my-2
         rounded-md
-        bg-red-800
-        "
+        lg:p-2
+        md:p-2"
       >
         <h1
           className="
           text-4xl
-          text-center
-          text-neutral-200"
+          text-neutral-200
+          font-bold
+          md:text-6xl
+          lg:text-7xl"
         >
-          DATA RECIPE APP
+          DATA
+          {' '}
+          <br />
+          {' '}
+          RECIPE
+          <br />
+          APP
           {' '}
 
         </h1>
+        <img
+          src={ imgLogin }
+          alt="cozinheiro"
+          className="opacity-7
+        mt-1
+        w-48
+        md:w-80
+        lg:w-96
+        "
+        />
       </div>
       <div
         className="
         flex
         flex-col
-        w-3/4
+        w-2/3
         content-center
         my-1"
       >
-        <div>
-          <HiAtSymbol
-            className="z-50 border-solid border-2 border-blue-100
-          absolute right-12 mt-1 rounded-r
-            bg-gray-300 w-12 h-9 p-1.5"
-          />
-          <input
-            className="
+        <input
+          className="
           mt-1  w-full px-3 py-2 bg-white border
           border-gray-300 rounded-md text-sm shadow-sm
           placeholder-gray-400   focus:outline-none
           focus:border-sky-500 focus:ring-1 focus:ring-sky-500
           mx-3 my-1"
-            type="text"
-            data-testid="email-input"
-            name="email"
-            placeholder="email"
-            value={ login.email }
-            onChange={ handleChange }
-          />
-        </div>
-        <div>
-          <HiOutlineEye
-            className="z-50 border-solid border-2 border-blue-100
-            absolute right-12 mt-1 rounded-r
-            bg-gray-300 w-12 h-9 p-1.5"
-          />
-          <input
-            className="
+          type="text"
+          data-testid="email-input"
+          name="email"
+          placeholder="email"
+          value={ login.email }
+          onChange={ handleChange }
+        />
+        <input
+          className="
           mt-1 block w-full px-3 py-2 bg-white border
           border-gray-300 rounded-md text-sm shadow-sm
           placeholder-gray-400   focus:outline-none
           focus:border-sky-500 focus:ring-1 focus:ring-sky-500
           mx-3 my-1"
-            type="text"
-            data-testid="password-input"
-            placeholder="Senha"
-            name="password"
-            value={ login.password }
-            onChange={ handleChange }
-          />
-
-        </div>
+          type="text"
+          data-testid="password-input"
+          placeholder="Senha"
+          name="password"
+          value={ login.password }
+          onChange={ handleChange }
+        />
         <button
           className="
-          rounded-md bg-red-500
+          rounded-md bg-purple-600
           disabled:bg-gray-500 opacity-7 bg-origin-padding
           focus-within:shadow-lg  w-full mx-3 mb-3 mt-2.5 px-3 py-2
-          focus-visible:ring active:bg-red-700"
+          focus-visible:ring active:bg-purple-600 text-white font-extrabold"
           type="button"
           data-testid="login-submit-btn"
           onClick={ handleClick }
