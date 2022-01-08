@@ -8,8 +8,9 @@ export default function Card({ index, cardName, img, recipeId, path }) {
       to={ `/${path}/${recipeId}` }
     >
       <section
-        className=" my-4 h-60 w-60 rounded-lg bg-white flex
-        content-center flex-col  mb-4 mx-auto"
+        className="mx-6 my-2 w-32 rounded-lg bg-white flex
+        content-center flex-col
+        shadow-lg shadow-black-500/50 mb-4"
         data-testid={ `${index}-recipe-card` }
       >
         <img

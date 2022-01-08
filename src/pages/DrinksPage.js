@@ -26,23 +26,31 @@ export default function DrinksPage() {
   }
 
   return (
-    <div>
+    <div
+      className="w-screen justify-center px-4 flex flex-col
+      content-center items-center"
+    >
       <Header searchIcon={ searchIcon } text="Bebidas" />
       <CategoryFilters type="cocktail" objectKey="drinks" />
-      {
-        resultFetch === null ? (
-          global.alert('Sinto muito, não encontramos nenhuma receita para esses filtros.')
-        ) : restrictResult().map((recipe, index) => (
-          <Card
-            key={ index }
-            index={ index }
-            cardName={ recipe.strDrink }
-            img={ recipe.strDrinkThumb }
-            recipeId={ recipe.idDrink }
-            path="bebidas"
-          />
-        ))
-      }
+      <div
+        className="flex mt-8 w-10/12 justify-center flex-wrap"
+      >
+        {
+          resultFetch === null ? (
+            global.alert(`Sinto muito, não 
+            encontramos nenhuma receita para esses filtros.`)
+          ) : restrictResult().map((recipe, index) => (
+            <Card
+              key={ index }
+              index={ index }
+              cardName={ recipe.strDrink }
+              img={ recipe.strDrinkThumb }
+              recipeId={ recipe.idDrink }
+              path="bebidas"
+            />
+          ))
+        }
+      </div>
       <LowerMenu />
     </div>
   );
