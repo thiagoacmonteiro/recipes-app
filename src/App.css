@@ -29,6 +29,11 @@
 }
 */
 
+.done-image {
+  height: 100px;
+  width: 100px;
+}
+
 .meals > .logo {
   animation: shake 1.5s infinite ease;
   color: aliceblue;
