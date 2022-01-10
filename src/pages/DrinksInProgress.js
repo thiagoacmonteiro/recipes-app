@@ -86,11 +86,20 @@ export default function DrinksInProgress() {
           </ul>
           <p data-testid="instructions">{startedDrink.strInstructions}</p>
           <FinishBtn
+            id={ id }
+            nameType="Drink"
+            fetchType="cocktail"
+            typeKey="drinks"
+            type="bebida"
             ingredients={ ingredients }
             localIngredients={ checkedIngredients }
           />
 
-          <ShareBtn />
+          <ShareBtn
+            testId="share-btn"
+            id={ id }
+            type="bebidas"
+          />
 
           <FavoriteBtn
             id={ id }

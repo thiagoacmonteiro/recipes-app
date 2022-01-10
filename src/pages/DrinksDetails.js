@@ -24,7 +24,11 @@ export default function DrinksDetails() {
         typeKey="meals"
         type="Meal"
       />
-      <ShareBtn />
+      <ShareBtn
+        testId="share-btn"
+        id={ id }
+        type="bebidas"
+      />
       <FavoriteBtn
         id={ id }
         nameType="Drink"

@@ -107,3 +107,43 @@ export function getFavRecipes() {
   const favJSON = JSON.parse(fav);
   return favJSON;
 }
+
+export function setDoneRecipes(recipeData, nameType, type, date) {
+  const localStorageData = JSON.parse(localStorage.getItem('doneRecipes'));
+  console.log(nameType);
+
+  if (localStorageData === null) {
+    return (
+      localStorage.setItem(
+        'doneRecipes', JSON.stringify([{
+          id: recipeData[`id${nameType}`],
+          type,
+          area: type === 'comida' ? recipeData.strArea : '',
+          category: recipeData.strCategory,
+          alcoholicOrNot: type === 'bebida' ? recipeData.strAlcoholic : '',
+          name: recipeData[`str${nameType}`],
+          image: recipeData[`str${nameType}Thumb`],
+          doneDate: date,
+          tags: recipeData.strTags !== null ? recipeData.strTags.split(',') : [],
+        }]),
+      ));
+  }
+
+  return (
+    localStorage.setItem(
+      'doneRecipes', JSON.stringify(
+        [...localStorageData, {
+          id: recipeData[`id${nameType}`],
+          type,
+          area: type === 'comida' ? recipeData.strArea : '',
+          category: recipeData.strCategory,
+          alcoholicOrNot: type === 'bebida' ? recipeData.strAlcoholic : '',
+          name: recipeData[`str${nameType}`],
+          image: recipeData[`str${nameType}Thumb`],
+          doneDate: date,
+          tags: recipeData.strTags !== null ? recipeData.strTags.split(',') : [],
+        }],
+      ),
+    )
+  );
+}
