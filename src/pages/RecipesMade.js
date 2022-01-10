@@ -94,7 +94,7 @@ export default function RecipesMade() {
           ))}
         </div>
       )) }
-      <p> Recipes Madee </p>
+      <p> Recipes Made </p>
     </div>
   );
 }
