@@ -13,7 +13,7 @@ export default function LowerMenu() {
 
   return (
     <footer data-testid="footer">
-      <div className="button-container">
+      <div className="w-screen flex justify-around">
         <button type="button" name="comidas" onClick={ handleClick }>
           <img
             name="comidas"
