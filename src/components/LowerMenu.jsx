@@ -14,7 +14,13 @@ export default function LowerMenu() {
   return (
     <footer data-testid="footer">
       <div className="w-screen flex justify-around">
-        <button type="button" name="comidas" onClick={ handleClick }>
+        <button
+          type="button"
+          name="comidas"
+          onClick={ handleClick }
+          className="transition ease-in-out delay-150
+        hover:-translate-y-1 hover:scale-105 cursor-pointer hover:opacity-60"
+        >
           <img
             name="comidas"
             src={ mealIcon }
@@ -22,7 +28,13 @@ export default function LowerMenu() {
             data-testid="food-bottom-btn"
           />
         </button>
-        <button type="button" name="explorar" onClick={ handleClick }>
+        <button
+          type="button"
+          name="explorar"
+          onClick={ handleClick }
+          className="transition ease-in-out delay-150
+        hover:-translate-y-1 hover:scale-105 cursor-pointer hover:opacity-60"
+        >
           <img
             name="explorar"
             src={ exploreIcon }
@@ -30,7 +42,13 @@ export default function LowerMenu() {
             data-testid="explore-bottom-btn"
           />
         </button>
-        <button type="button" name="bebidas" onClick={ handleClick }>
+        <button
+          type="button"
+          name="bebidas"
+          onClick={ handleClick }
+          className="transition ease-in-out delay-150
+        hover:-translate-y-1 hover:scale-105 cursor-pointer hover:opacity-60"
+        >
           <img
             name="bebidas"
             src={ drinkIcon }

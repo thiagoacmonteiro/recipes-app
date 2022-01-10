@@ -35,14 +35,38 @@ export default function CardDetails({ fetchType, id, type, typeKey, category }) 
   };
 
   return (
-    <section>
+    <section className="flex flex-col items-center justify-center">
       { stateType && (
         <>
-          <img src={ stateType[`str${type}Thumb`] } alt="" data-testid="recipe-photo" />
-          <p data-testid="recipe-title">{ stateType[`str${type}`] }</p>
-          <p data-testid="recipe-category">{ stateType[`str${category}`]}</p>
+          <img
+            src={ stateType[`str${type}Thumb`] }
+            alt=""
+            data-testid="recipe-photo"
+            className="w-5/6 mt-4 rounded-md shadow-lg shadow-black-500/50 mb-4"
+          />
+          <p
+            data-testid="recipe-title"
+            className="text-center font-bold text-black
+            no-underline mt-3 text-2xl md:underline"
+          >
+            { stateType[`str${type}`] }
 
-          <ul>
+          </p>
+          <p
+            data-testid="recipe-category"
+            className="text-center font-serif italic text-black
+          no-underline mt-3
+          md:underline"
+          >
+            { stateType[`str${category}`]}
+
+          </p>
+
+          <ul
+            className="text-center font-bold text-black
+          no-underline mt-3
+          md:underline"
+          >
             {
               concatenate().map((ingredient, index) => (
                 <li
@@ -54,8 +78,24 @@ export default function CardDetails({ fetchType, id, type, typeKey, category }) 
               ))
             }
           </ul>
-          <p data-testid="instructions">{stateType.strInstructions}</p>
-          <a href={ stateType.strYoutube } data-testid="video">{stateType.strYoutube}</a>
+          <p
+            data-testid="instructions"
+            className="text-center font-extrabold bg-gray-300 w-5/6 rounded-xl p-4
+            text-black no-underline mt-3 md:underline
+            shadow-lg shadow-black-500/50 mb-4"
+          >
+            {stateType.strInstructions}
+
+          </p>
+          <a
+            href={ stateType.strYoutube }
+            data-testid="video"
+            className="bg-gray-700 w-5/6 my-6 rounded-2xl text-center
+            p-4 cursor-pointer no-underline"
+          >
+            {stateType.strYoutube}
+
+          </a>
         </>)}
     </section>
   );

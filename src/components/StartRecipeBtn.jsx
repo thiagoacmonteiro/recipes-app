@@ -35,9 +35,12 @@ export default function StartRecipeBtn({ routeType, type, id }) {
         <button
           type="button"
           data-testid="start-recipe-btn"
-          className="startRecipe"
           onClick={ handleClick }
           value={ buttonText }
+          className="w-2/4 bg-black text-lg font-bold
+          text-white border-2 border-purple-900 rounded-md my-2 h-10
+          hover:opacity-75 transition ease-in-out delay-150
+          hover:-translate-y-1 hover:scale-105 fixed bottom-0"
         >
           { buttonText }
         </button>)}

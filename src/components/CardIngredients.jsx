@@ -35,7 +35,7 @@ export default function CardIngredients({ type }) {
   const str = type === 'meal' ? 'strIngredient' : 'strIngredient1';
 
   return (
-    <div>
+    <div className="flex flex-wrap justify-center pt-6">
       { ingredients
         && (
           ingredients.map((ingredient, index) => (
@@ -45,6 +45,9 @@ export default function CardIngredients({ type }) {
               data-testid={ `${index}-ingredient-card` }
               name={ ingredient[str] }
               onClick={ handleClick }
+              className="mx-6 my-2 w-28 rounded-lg bg-white flex
+              content-center flex-col justify-center items-center
+              shadow-lg shadow-black-500/50 mb-4"
             >
               <img
                 src={ `https://www.the${type}db.com/images/ingredients/${ingredient[str]}-Small.png` }

@@ -29,6 +29,10 @@ export default function ExploreDrinkBtn({ testid, explore, name }) {
       type="button"
       data-testid={ testid }
       onClick={ handleClick }
+      className="w-1/3 mx-2 bg-black text-lg font-bold
+        text-white border-2 border-purple-900 rounded-md my-2 h-14
+        hover:opacity-75 transition ease-in-out delay-150
+        hover:-translate-y-1 hover:scale-105"
     >
       { explore }
     </button>

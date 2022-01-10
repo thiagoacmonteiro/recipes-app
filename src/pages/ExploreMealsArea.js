@@ -33,15 +33,18 @@ export default function ExploreMealsArea() {
   }
 
   return (
-    <div>
+    <>
       <Header
         text="Explorar Origem"
         searchIcon={ searchIcon }
       />
-      <p> Explore Meals Area </p>
       <select
         data-testid="explore-by-area-dropdown"
         onChange={ handleChange }
+        className="
+        flex justify-center mx-auto my-4  w-5/12 px-3 py-2 bg-white border
+        border-gray-300 rounded-md text-sm shadow-sm focus:outline-none
+        focus:border-fuchsia-700 focus:ring-1 focus:ring-violet-500"
       >
         { areas.map(({ strArea }, index) => (
           <option
@@ -59,12 +62,15 @@ export default function ExploreMealsArea() {
           All
         </option>
       </select>
-      { resultByArea
+      <div className="flex flex-wrap justify-center">
+        { resultByArea
         && (
           resultByArea.map(({ strMealThumb, strMeal, idMeal }, index) => (
             <div
               key={ index }
               data-testid={ `${index}-recipe-card` }
+              className="mx-4 my-2 w-28 rounded-lg bg-white flex
+              content-center flex-col shadow-lg shadow-black-500/50 mb-4"
             >
               <input
                 type="image"
@@ -73,17 +79,22 @@ export default function ExploreMealsArea() {
                 id={ idMeal }
                 src={ strMealThumb }
                 alt={ strMeal }
+                className="rounded-lg w-3/4 mt-2 mx-auto"
               />
               <p
                 data-testid={ `${index}-card-name` }
                 id={ idMeal }
+                className="text-center font-bold text-black
+          no-underline mt-3
+          md:underline"
               >
                 { strMeal }
               </p>
             </div>
           ))
         )}
+      </div>
       <LowerMenu />
-    </div>
+    </>
   );
 }

@@ -32,7 +32,7 @@ export default function MealsPage() {
       <Header searchIcon={ searchIcon } text="Comidas" />
       <CategoryFilters type="meal" objectKey="meals" />
       <div
-        className=" mt-8 flex w-10/12 justify-center flex-wrap"
+        className=" mt-8 flex w-full justify-center flex-wrap"
       >
         {resultFetch === null
           ? global.alert(
