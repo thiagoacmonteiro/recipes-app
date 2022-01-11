@@ -55,10 +55,15 @@ export default function DrinksInProgress() {
   }, [checkedIngredients, setCheckedIngredients, id]);
 
   return (
-    <div className="flex flex-col items-center bg-slate-100 h-full py-10">
+    <div className="flex flex-col items-center justify-center bg-slate-100 h-full py-10">
       { startedDrink && (
         <>
-          <img src={ startedDrink.strDrinkThumb } alt="" data-testid="recipe-photo" />
+          <img
+            src={ startedDrink.strDrinkThumb }
+            alt=""
+            data-testid="recipe-photo"
+            className="flex items-center justify-center my-4 mx-auto rounded-md w-3/4"
+          />
           <p
             data-testid="recipe-title"
             className="text-center font-bold text-black
@@ -67,31 +72,60 @@ export default function DrinksInProgress() {
             { startedDrink.strDrink }
 
           </p>
-          <p data-testid="recipe-category">{ startedDrink.strCategory}</p>
+          <p
+            data-testid="recipe-category"
+            className="text-center italic text-black
+          no-underline mt-3 text-2xl md:underline"
+          >
+            { startedDrink.strCategory}
 
-          <ul>
+          </p>
+
+          <div
+            className="flex flex-col text-left justify-center ml-10 font-bold text-black
+          no-underline mt-3 md:underline"
+          >
             {
               ingredients.map((ingredient, index) => (
-                <li
+                <label
+                  htmlFor={ ingredient }
                   key={ index }
                   data-testid={ `${index}-ingredient-step` }
                   className={ checkedIngredients.includes(ingredient) && 'conclud' }
                 >
-                  {`${ingredient} - ${measures[index] ? measures[index] : 'to taste'}`}
-                  <input
-                    type="checkbox"
-                    value={ ingredient }
-                    name={ ingredient }
-                    onChange={ handleClick }
-                    checked={
-                      checkedIngredients.includes(ingredient)
-                    }
-                  />
-                </li>
+                  <div className="flex items-center">
+                    <input
+                      type="checkbox"
+                      value={ ingredient }
+                      name={ ingredient }
+                      onChange={ handleClick }
+                      id={ ingredient }
+                      checked={
+                        checkedIngredients.includes(ingredient)
+                      }
+                      className="
+                      accent-green-500 h-6 w-6 cursor-pointer focus:accent-teal-800"
+                    />
+                    <span className="mx-4">
+                      {`${ingredient} - ${measures[index]
+                        ? measures[index] : 'to taste'}`}
+                    </span>
+                  </div>
+                </label>
               ))
             }
-          </ul>
-          <p data-testid="instructions">{startedDrink.strInstructions}</p>
+          </div>
+          <div className="flex items-center justify-center">
+            <p
+              data-testid="instructions"
+              className="text-center font-extrabold bg-gray-300 w-5/6 rounded-xl p-4
+            text-black no-underline mt-3 md:no-underline
+            shadow-lg shadow-black-500/50 mb-4"
+            >
+              {startedDrink.strInstructions}
+
+            </p>
+          </div>
           <FinishBtn
             id={ id }
             nameType="Drink"
@@ -101,21 +135,20 @@ export default function DrinksInProgress() {
             ingredients={ ingredients }
             localIngredients={ checkedIngredients }
           />
-
-          <ShareBtn
-            testId="share-btn"
-            id={ id }
-            type="bebidas"
-          />
-
-          <FavoriteBtn
-            id={ id }
-            nameType="Drink"
-            fetchType="cocktail"
-            typeKey="drinks"
-            type="bebida"
-          />
-
+          <div className="flex justify-center m-4">
+            <ShareBtn
+              testId="share-btn"
+              id={ id }
+              type="bebidas"
+            />
+            <FavoriteBtn
+              id={ id }
+              nameType="Drink"
+              fetchType="cocktail"
+              typeKey="drinks"
+              type="bebida"
+            />
+          </div>
         </>)}
     </div>
   );

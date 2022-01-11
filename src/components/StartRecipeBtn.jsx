@@ -29,7 +29,7 @@ export default function StartRecipeBtn({ routeType, type, id }) {
   }
 
   return (
-    <div>
+    <div className="w-1/2">
       { !doneIds.includes(id)
       && (
         <button

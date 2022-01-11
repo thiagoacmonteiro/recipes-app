@@ -40,6 +40,7 @@ export default function LowerMenu() {
             src={ exploreIcon }
             alt="Explore-Icon"
             data-testid="explore-bottom-btn"
+            className=""
           />
         </button>
         <button
@@ -47,7 +48,7 @@ export default function LowerMenu() {
           name="bebidas"
           onClick={ handleClick }
           className="transition ease-in-out delay-150
-        hover:-translate-y-1 hover:scale-105 cursor-pointer hover:opacity-60"
+          hover:-translate-y-1 hover:scale-105 cursor-pointer hover:opacity-60"
         >
           <img
             name="bebidas"

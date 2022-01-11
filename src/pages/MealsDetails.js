@@ -10,7 +10,7 @@ export default function MealsDetails() {
   const id = useId();
 
   return (
-    <div className="bg-slate-100 h-full py-10">
+    <div className="bg-slate-100 h-full flex flex-col items-center py-10">
       <CardDetails
         type="Meal"
         typeKey="meals"

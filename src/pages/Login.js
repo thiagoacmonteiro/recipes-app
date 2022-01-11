@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useHistory } from 'react-router';
 import Context from '../contexts/Context';
 import { setTokens, setUser } from '../services/localStorage';
@@ -7,6 +7,7 @@ import imgLogin from '../images/login_page.svg';
 
 export default function Login() {
   const { login, setLogin } = useContext(Context);
+  const [inputType, setInputType] = useState(false);
   const history = useHistory();
 
   const handleChange = ({ target }) => {
@@ -24,6 +25,10 @@ export default function Login() {
     setUser({ email: login.email });
     history.push('/comidas');
   };
+
+  function changeInput() {
+    setInputType(!inputType);
+  }
 
   return (
     <section
@@ -71,7 +76,7 @@ export default function Login() {
           alt="cozinheiro"
           className="opacity-7
         mt-1
-        w-48
+        w-44
         md:w-80
         lg:w-96
         "
@@ -82,6 +87,7 @@ export default function Login() {
         flex
         flex-col
         w-2/3
+        items-center
         content-center
         my-1"
       >
@@ -92,7 +98,7 @@ export default function Login() {
           placeholder-gray-400   focus:outline-none
           focus:border-sky-500 focus:ring-1 focus:ring-sky-500
           mx-3 my-1"
-          type="text"
+          type="email"
           data-testid="email-input"
           name="email"
           placeholder="email"
@@ -106,13 +112,26 @@ export default function Login() {
           placeholder-gray-400   focus:outline-none
           focus:border-sky-500 focus:ring-1 focus:ring-sky-500
           mx-3 my-1"
-          type="text"
+          type={ !inputType ? 'password' : 'text' }
           data-testid="password-input"
           placeholder="Senha"
           name="password"
           value={ login.password }
           onChange={ handleChange }
         />
+        <label
+          htmlFor="password"
+          className="text-white"
+        >
+          <span className="mx-2 font-bold">
+            show password
+          </span>
+          <input
+            type="checkbox"
+            onClick={ changeInput }
+            id="password"
+          />
+        </label>
         <button
           className="
           rounded-md bg-purple-600

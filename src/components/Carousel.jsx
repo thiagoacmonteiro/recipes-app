@@ -36,7 +36,7 @@ function Carousel() {
         <div className="carousel-item active relative float-left w-full">
           <img
             src="https://mdbootstrap.com/img/Photos/Slides/img%20(15).jpg"
-            className="block w-full"
+            className="inline w-1/2"
             alt="..."
           />
           <div className="carousel-caption hidden md:block absolute text-center">
@@ -47,7 +47,7 @@ function Carousel() {
         <div className="carousel-item relative float-left w-full">
           <img
             src="https://mdbootstrap.com/img/Photos/Slides/img%20(22).jpg"
-            className="block w-full"
+            className="inline w-1/2"
             alt="..."
           />
           <div className="carousel-caption hidden md:block absolute text-center">
@@ -58,7 +58,7 @@ function Carousel() {
         <div className="carousel-item relative float-left w-full">
           <img
             src="https://mdbootstrap.com/img/Photos/Slides/img%20(23).jpg"
-            className="block w-full"
+            className="inline w-1/2"
             alt="..."
           />
           <div className="carousel-caption hidden md:block absolute text-center">

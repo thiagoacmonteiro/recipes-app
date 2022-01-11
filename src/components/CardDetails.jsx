@@ -23,6 +23,12 @@ export default function CardDetails({ fetchType, id, type, typeKey, category }) 
     return acc;
   }, []);
 
+  function splitYoutube(urlVideo) {
+    const video = urlVideo.split('watch?v=');
+    return (`${video[0]}embed/${video[1]}`);
+  }
+  console.log(stateType.strYoutube);
+
   const concatenate = () => {
     const ingredientAndMeasure = [];
 
@@ -33,8 +39,6 @@ export default function CardDetails({ fetchType, id, type, typeKey, category }) 
 
     return ingredientAndMeasure;
   };
-  console.log(stateType);
-  console.log(stateType.strYoutube);
   return (
     <section className="flex flex-col items-center justify-center">
       { stateType && (
@@ -88,13 +92,12 @@ export default function CardDetails({ fetchType, id, type, typeKey, category }) 
 
           </p>
           {
-            (stateType.strYoutube || stateType.strVideo)
+            (stateType.strYoutube)
           && (
             <iframe
               width="75%"
-              height="360"
-              src={ stateType.strYoutube || stateType.strVideo }
-              // https://www.youtube.com/embed/mulqW-J3Yy4 adicionar o embed
+              height="340"
+              src={ splitYoutube(stateType.strYoutube) }
               title="YouTube video player"
               frameBorder="0"
               allow="accelerometer; autoplay;
@@ -102,7 +105,6 @@ export default function CardDetails({ fetchType, id, type, typeKey, category }) 
               allowFullScreen
               className="my-6 shadow-xl shadow-slate-600 border-8 border-white"
             />
-
           )
           }
         </>)}

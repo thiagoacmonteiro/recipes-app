@@ -11,7 +11,7 @@ export default function DrinksDetails() {
   const id = useId();
 
   return (
-    <div className="bg-slate-100 h-full py-10">
+    <div className="bg-slate-100 h-full flex flex-col items-center py-10">
       <CardDetails
         type="Drink"
         typeKey="drinks"
@@ -24,6 +24,7 @@ export default function DrinksDetails() {
         typeKey="meals"
         type="Meal"
       />
+
       <div className="flex justify-center m-4">
         <ShareBtn
           testId="share-btn"
