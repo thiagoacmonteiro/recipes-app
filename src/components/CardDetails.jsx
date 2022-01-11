@@ -33,7 +33,8 @@ export default function CardDetails({ fetchType, id, type, typeKey, category }) 
 
     return ingredientAndMeasure;
   };
-
+  console.log(stateType);
+  console.log(stateType.strYoutube);
   return (
     <section className="flex flex-col items-center justify-center">
       { stateType && (
@@ -64,8 +65,7 @@ export default function CardDetails({ fetchType, id, type, typeKey, category }) 
 
           <ul
             className="text-center font-bold text-black
-          no-underline mt-3
-          md:underline"
+            no-underline mt-3 md:underline"
           >
             {
               concatenate().map((ingredient, index) => (
@@ -87,15 +87,24 @@ export default function CardDetails({ fetchType, id, type, typeKey, category }) 
             {stateType.strInstructions}
 
           </p>
-          <a
-            href={ stateType.strYoutube }
-            data-testid="video"
-            className="bg-gray-700 w-5/6 my-6 rounded-2xl text-center
-            p-4 cursor-pointer no-underline"
-          >
-            {stateType.strYoutube}
+          {
+            (stateType.strYoutube || stateType.strVideo)
+          && (
+            <iframe
+              width="75%"
+              height="360"
+              src={ stateType.strYoutube || stateType.strVideo }
+              // https://www.youtube.com/embed/mulqW-J3Yy4 adicionar o embed
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay;
+            clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="my-6 shadow-xl shadow-slate-600 border-8 border-white"
+            />
 
-          </a>
+          )
+          }
         </>)}
     </section>
   );

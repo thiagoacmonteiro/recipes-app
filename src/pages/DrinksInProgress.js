@@ -55,11 +55,18 @@ export default function DrinksInProgress() {
   }, [checkedIngredients, setCheckedIngredients, id]);
 
   return (
-    <div>
+    <div className="flex flex-col items-center bg-slate-100 h-full py-10">
       { startedDrink && (
         <>
           <img src={ startedDrink.strDrinkThumb } alt="" data-testid="recipe-photo" />
-          <p data-testid="recipe-title">{ startedDrink.strDrink }</p>
+          <p
+            data-testid="recipe-title"
+            className="text-center font-bold text-black
+            no-underline mt-3 text-2xl md:underline"
+          >
+            { startedDrink.strDrink }
+
+          </p>
           <p data-testid="recipe-category">{ startedDrink.strCategory}</p>
 
           <ul>

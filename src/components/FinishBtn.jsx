@@ -45,6 +45,10 @@ function FinishBtn({
       data-testid="finish-recipe-btn"
       onClick={ handleClick }
       disabled={ disabled }
+      className="flex items-center justify-center w-2/4 bg-black text-lg font-bold
+      text-white border-2 border-purple-900 rounded-md my-2 h-10
+      hover:opacity-75 transition ease-in-out delay-150
+      hover:-translate-y-1 hover:scale-105 disabled:opacity-75 disabled:bg-zinc-500"
     >
       Finish
     </button>
