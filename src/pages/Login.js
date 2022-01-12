@@ -61,7 +61,7 @@ export default function Login() {
           md:text-6xl
           lg:text-7xl"
         >
-          DATA
+          DATA-G
           {' '}
           <br />
           {' '}
