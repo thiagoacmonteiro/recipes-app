@@ -14,6 +14,9 @@ export default function FavoriteRecipes() {
   }, []);
 
   function handleClick({ target: { name } }) {
+    if (getFavRecipes() === null) {
+      return global.alert('Sua lista de receitas favoritas está vazia');
+    }
     if (name === 'All') return setFavRecipes(getFavRecipes());
     setFavRecipes(getFavRecipes().filter((recipe) => recipe.type === name));
   }
