@@ -58,7 +58,7 @@ export default function FilterForm() {
         <input
           type="text"
           data-testid="search-input"
-          placeholder="Pesquisar"
+          placeholder="Search"
           value={ inputValue }
           onChange={ handleInputChange }
           className="my-3  w-full px-3 py-2 bg-white border
@@ -69,7 +69,7 @@ export default function FilterForm() {
         <div>
           <label htmlFor="ingrediente" className="font-bold mx-1">
             <span>
-              Ingrediente
+              Ingredient
             </span>
             <input
               type="radio"
@@ -82,7 +82,7 @@ export default function FilterForm() {
           </label>
           <label htmlFor="nome" className="font-bold mx-1">
             <span>
-              nome
+              Name
             </span>
             <input
               type="radio"
@@ -95,7 +95,7 @@ export default function FilterForm() {
           </label>
           <label htmlFor="primeiro-letra" className="font-bold mx-1">
             <span className="m-1">
-              Primeira letra
+              First Letter
             </span>
             <input
               type="radio"
@@ -116,7 +116,7 @@ export default function FilterForm() {
           hover:opacity-75 transition ease-in-out delay-150
           hover:-translate-y-1 hover:scale-105"
         >
-          Buscar
+          Search
         </button>
       </form>
     </div>

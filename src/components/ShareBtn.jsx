@@ -18,7 +18,7 @@ export default function ShareBtn({ testId, id, type }) {
     flex items-center justify-center"
     >
       { copiedLink && (
-        <p>Link copiado!</p>
+        <p>Link copied!</p>
       ) }
       <button
         data-testid={ testId }

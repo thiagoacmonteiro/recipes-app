@@ -29,7 +29,7 @@ export default function MealsPage() {
     <div
       className="w-screen justify-center px-4 flex flex-col content-center items-center"
     >
-      <Header searchIcon={ searchIcon } text="Comidas" />
+      <Header searchIcon={ searchIcon } text="Meals" />
       <CategoryFilters type="meal" objectKey="meals" />
       <div
         className=" mt-8 flex w-full justify-center flex-wrap"

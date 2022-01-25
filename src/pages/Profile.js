@@ -29,7 +29,7 @@ export default function Profile() {
   return (
     <>
       <Header
-        text="Perfil"
+        text="Profile"
       />
       <p
         data-testid="profile-email"
@@ -49,7 +49,7 @@ export default function Profile() {
           hover:opacity-75 transition ease-in-out delay-150
           hover:-translate-y-1 hover:scale-105"
         >
-          Receitas Feitas
+          Recipes Made
         </button>
         <button
           type="button"
@@ -61,7 +61,7 @@ export default function Profile() {
           hover:opacity-75 transition ease-in-out delay-150
           hover:-translate-y-1 hover:scale-105"
         >
-          Receitas Favoritas
+          Favorite Recipes
         </button>
         <button
           type="button"
@@ -73,7 +73,7 @@ export default function Profile() {
           hover:opacity-75 transition ease-in-out delay-150
           hover:-translate-y-1 hover:scale-105"
         >
-          Sair
+          Logout
         </button>
       </div>
       <img

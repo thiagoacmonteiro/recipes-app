@@ -30,7 +30,7 @@ export default function DrinksPage() {
       className="w-screen justify-center px-4 flex flex-col
       content-center items-center"
     >
-      <Header searchIcon={ searchIcon } text="Bebidas" />
+      <Header searchIcon={ searchIcon } text="Drinks" />
       <CategoryFilters type="cocktail" objectKey="drinks" />
       <div
         className="flex mt-8 w-10/12 justify-center flex-wrap"

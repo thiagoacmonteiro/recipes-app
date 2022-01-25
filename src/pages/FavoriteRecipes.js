@@ -15,7 +15,7 @@ export default function FavoriteRecipes() {
 
   function handleClick({ target: { name } }) {
     if (getFavRecipes() === null) {
-      return global.alert('Sua lista de receitas favoritas está vazia');
+      return global.alert('Your favorite recipes list is empty');
     }
     if (name === 'All') return setFavRecipes(getFavRecipes());
     setFavRecipes(getFavRecipes().filter((recipe) => recipe.type === name));
@@ -28,7 +28,7 @@ export default function FavoriteRecipes() {
   return (
     <div>
       <Header
-        text="Receitas Favoritas"
+        text="Favorite Recipes"
       />
       <div
         className="

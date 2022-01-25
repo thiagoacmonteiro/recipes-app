@@ -13,7 +13,7 @@ export default function Explore() {
   return (
     <>
       <Header
-        text="Explorar"
+        text="Explore"
       />
       <div className="flex flex-col justify-center items-center mt-4">
         <button
@@ -26,7 +26,7 @@ export default function Explore() {
         hover:opacity-75 transition ease-in-out delay-150
         hover:-translate-y-1 hover:scale-105"
         >
-          Explorar Comidas
+          Explore Meals
         </button>
 
         <button
@@ -39,7 +39,7 @@ export default function Explore() {
         hover:opacity-75 transition ease-in-out delay-150
         hover:-translate-y-1 hover:scale-105"
         >
-          Explorar Bebidas
+          Explore Drinks
         </button>
       </div>
       <img

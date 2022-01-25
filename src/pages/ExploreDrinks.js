@@ -8,18 +8,18 @@ export default function ExploreDrinks() {
   return (
     <div>
       <Header
-        text="Explorar Bebidas"
+        text="Explore Drinks"
       />
       <div className="flex items-center flex-col my-6">
         <ExploreDrinkBtn
           testid="explore-by-ingredient"
-          explore="Por Ingredientes"
-          name="Por Ingredientes"
+          explore="By Ingredient"
+          name="By Ingredient"
         />
         <ExploreDrinkBtn
           testid="explore-surprise"
-          explore="Me Surpreenda!"
-          name="Me Surpreenda!"
+          explore="Surprise Me!"
+          name="Surprise Me!"
         />
       </div>
       <img

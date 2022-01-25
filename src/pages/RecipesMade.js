@@ -28,7 +28,7 @@ export default function RecipesMade() {
   return (
     <div>
       <Header
-        text="Receitas Feitas"
+        text="Recipes Made"
       />
       <div
         className="

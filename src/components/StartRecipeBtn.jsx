@@ -4,7 +4,7 @@ import { useHistory } from 'react-router';
 // import { setRecipesInProgress } from '../services/localStorage';
 
 export default function StartRecipeBtn({ routeType, type, id }) {
-  const [buttonText, setButtonText] = useState('Iniciar Receita');
+  const [buttonText, setButtonText] = useState('Start Recipe');
   const [doneIds, setDoneIds] = useState([]);
   const history = useHistory();
 
@@ -15,7 +15,7 @@ export default function StartRecipeBtn({ routeType, type, id }) {
   function setButtonTextFunction() {
     if (localStorageData !== null && Object.keys(localStorageData).includes(type)) {
       const localKeys = Object.keys(localStorageData[type]);
-      if (localKeys && localKeys.includes(id)) setButtonText('Continuar Receita');
+      if (localKeys && localKeys.includes(id)) setButtonText('Continue Recipe');
     }
   }
 

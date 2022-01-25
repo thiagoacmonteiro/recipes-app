@@ -7,7 +7,7 @@ export default function ExploreDrinksIngredients() {
   return (
     <>
       <Header
-        text="Explorar Ingredientes"
+        text="Explore Ingredients"
       />
       <CardIngredients type="cocktail" />
       <LowerMenu />

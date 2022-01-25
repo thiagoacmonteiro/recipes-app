@@ -114,7 +114,7 @@ export default function Login() {
           mx-3 my-1"
           type={ !inputType ? 'password' : 'text' }
           data-testid="password-input"
-          placeholder="Senha"
+          placeholder="password"
           name="password"
           value={ login.password }
           onChange={ handleChange }
@@ -143,7 +143,7 @@ export default function Login() {
           onClick={ handleClick }
           disabled={ !((passwordIsValid && emailIsValid === true)) }
         >
-          Entrar
+          Enter
         </button>
       </div>
     </section>

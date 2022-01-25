@@ -13,13 +13,13 @@ export default function ExploreFoodBtn({ testid, explore, name }) {
 
   function handleClick() {
     switch (name) {
-    case 'Por Ingredientes':
+    case 'By Ingredient':
       history.push('/explorar/comidas/ingredientes');
       break;
-    case 'Por Local de Origem':
+    case 'By Area':
       history.push('/explorar/comidas/area');
       break;
-    case 'Me Surpreenda!':
+    case 'Surprise Me!':
       history.push(`/comidas/${random}`);
       break;
     default:

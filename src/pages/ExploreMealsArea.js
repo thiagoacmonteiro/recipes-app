@@ -35,7 +35,7 @@ export default function ExploreMealsArea() {
   return (
     <>
       <Header
-        text="Explorar Origem"
+        text="Explore Area"
         searchIcon={ searchIcon }
       />
       <select

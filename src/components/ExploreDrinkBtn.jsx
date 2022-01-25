@@ -13,10 +13,10 @@ export default function ExploreDrinkBtn({ testid, explore, name }) {
 
   function handleClick() {
     switch (name) {
-    case 'Por Ingredientes':
+    case 'By Ingredient':
       history.push('/explorar/bebidas/ingredientes');
       break;
-    case 'Me Surpreenda!':
+    case 'Surprise Me!':
       history.push(`/bebidas/${random}`);
       break;
     default:
