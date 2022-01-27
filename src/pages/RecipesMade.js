@@ -139,5 +139,6 @@ export default function RecipesMade() {
           </div>
         )) }
       </div>
+    </div>
   );
 }
