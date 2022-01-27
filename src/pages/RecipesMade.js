@@ -15,7 +15,7 @@ export default function RecipesMade() {
 
   function handleClick({ target: { name } }) {
     if (doneRecipes === null) {
-      return global.alert('Sua lista de receitas feitas está vazia');
+      return global.alert('Your made recipes list is empty!');
     }
     if (name === 'All') return setRecipes(doneRecipes);
     setRecipes(doneRecipes.filter((recipe) => recipe.type === name));
