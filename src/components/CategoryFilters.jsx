@@ -61,10 +61,17 @@ export default function CategoryFilters({ type, objectKey }) {
   }
 
   return (
-    <section>
+    <section
+      className="flex flex-wrap justify-around
+      w-screen h-fit mx-2 bg-gray-800"
+    >
       { categorys.length > 0 && restrictResult().map((category) => (
         <button
           type="button"
+          className="
+          bg-gray-300 rounded-lg mx-3 my-2
+          px-1 py-1 shadow-lg shadow-gray-50
+          text-black font-extrabold h-fit w-fit focus:outline-none "
           name={ category.strCategory } // Incluí esse name para usar como parâmetro através do target na função filterByCategory
           key={ category.strCategory }
           click={ clicked }
@@ -78,6 +85,10 @@ export default function CategoryFilters({ type, objectKey }) {
         type="button"
         onClick={ getAll }
         data-testid="All-category-filter"
+        className="
+          bg-gray-300 rounded-lg mx-2 my-2
+          px-1 py-1 shadow-lg shadow-gray-50
+          text-black font-extrabold h-fit w-14 focus:outline-none"
       >
         All
       </button>

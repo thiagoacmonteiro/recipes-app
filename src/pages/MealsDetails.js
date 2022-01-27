@@ -10,7 +10,7 @@ export default function MealsDetails() {
   const id = useId();
 
   return (
-    <div>
+    <div className="bg-slate-100 h-full flex flex-col items-center py-10">
       <CardDetails
         type="Meal"
         typeKey="meals"
@@ -23,20 +23,21 @@ export default function MealsDetails() {
         typeKey="drinks"
         type="Drink"
       />
-      <ShareBtn
-        testId="share-btn"
-        id={ id }
-        type="comidas"
-      />
+      <div className="flex justify-center m-4">
+        <ShareBtn
+          testId="share-btn"
+          id={ id }
+          type="comidas"
+        />
 
-      <FavoriteBtn
-        id={ id }
-        nameType="Meal"
-        fetchType="meal"
-        typeKey="meals"
-        type="comida"
-      />
-
+        <FavoriteBtn
+          id={ id }
+          nameType="Meal"
+          fetchType="meal"
+          typeKey="meals"
+          type="comida"
+        />
+      </div>
       <StartRecipeBtn
         id={ id }
         type="meals"

@@ -13,18 +13,21 @@ export default function ShareBtnDoneRecipes({ testId, id, type }) {
   }
 
   return (
-    <div>
-      { copiedLink && (
-        <p>Link copiado!</p>
-      ) }
-      <input
-        data-testid={ testId }
-        type="image"
-        onClick={ handleClick }
-        value="compartilhar"
-        src={ shareIcon }
-        alt="shareIcon"
-      />
+    <div
+      className="mb-3 bg-gray-300 p-2 rounded-xl h-12 w-12
+    flex items-center justify-center"
+    >
+      { copiedLink ? (
+        <p>Link copied!</p>
+      ) : (
+        <input
+          data-testid={ testId }
+          type="image"
+          onClick={ handleClick }
+          value="compartilhar"
+          src={ shareIcon }
+          alt="shareIcon"
+        />)}
     </div>
   );
 }

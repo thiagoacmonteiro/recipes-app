@@ -13,7 +13,10 @@ export default function DesfavoriteBtn({ id, setFavRecipes, testId }) {
   }
 
   return (
-    <div>
+    <div
+      className="bg-gray-300 mx-2 p-2 rounded-xl h-12 w-12
+    flex items-center justify-center"
+    >
       <input
         data-testid={ testId }
         type="image"

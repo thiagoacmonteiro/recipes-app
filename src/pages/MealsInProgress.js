@@ -55,14 +55,36 @@ export default function MealsInProgress() {
   }, [checkedIngredients, setCheckedIngredients, id]);
 
   return (
-    <section>
+    <section className="flex flex-col items-center bg-slate-100 h-full py-10">
       { startedMeal && (
         <>
-          <img src={ startedMeal.strMealThumb } alt="" data-testid="recipe-photo" />
-          <p data-testid="recipe-title">{ startedMeal.strMeal }</p>
-          <p data-testid="recipe-category">{ startedMeal.strCategory}</p>
+          <img
+            src={ startedMeal.strMealThumb }
+            alt=""
+            data-testid="recipe-photo"
+            className="flex items-center justify-center my-4 mx-auto rounded-md w-3/4"
+          />
+          <p
+            data-testid="recipe-title"
+            className="text-center font-bold text-black
+            no-underline mt-3 text-2xl md:underline"
+          >
+            { startedMeal.strMeal }
 
-          <ul>
+          </p>
+          <p
+            data-testid="recipe-category"
+            className="text-center italic text-black
+            no-underline mt-3 text-2xl md:underline"
+          >
+            { startedMeal.strCategory}
+
+          </p>
+
+          <div
+            className="flex flex-col text-left justify-center ml-10 font-bold text-black
+            no-underline mt-3 md:underline"
+          >
             {
               ingredients.map((ingredient, index) => (
                 <label
@@ -71,22 +93,38 @@ export default function MealsInProgress() {
                   className={ checkedIngredients.includes(ingredient) && 'conclud' }
                   key={ ingredient }
                 >
-                  {`${ingredient} - ${measures[index] ? measures[index] : 'to taste'}`}
-                  <input
-                    type="checkbox"
-                    value={ ingredient }
-                    name={ ingredient }
-                    onChange={ handleClick }
-                    id={ ingredient }
-                    checked={
-                      checkedIngredients.includes(ingredient)
-                    }
-                  />
+                  <div className="flex items-center">
+                    <input
+                      type="checkbox"
+                      value={ ingredient }
+                      name={ ingredient }
+                      onChange={ handleClick }
+                      id={ ingredient }
+                      checked={
+                        checkedIngredients.includes(ingredient)
+                      }
+                      className="
+                      accent-green-500 h-6 w-6 cursor-pointer focus:accent-teal-800"
+                    />
+                    <span className="mx-4">
+                      {`${ingredient} - ${measures[index]
+                        ? measures[index] : 'to taste'}`}
+                    </span>
+                  </div>
                 </label>
               ))
             }
-          </ul>
-          <p data-testid="instructions">{startedMeal.strInstructions}</p>
+          </div>
+          <div className="flex items-center justify-center">
+            <p
+              data-testid="instructions"
+              className="text-center font-extrabold bg-gray-300 w-5/6 rounded-xl p-4
+          text-black no-underline mt-3 md:no-underline
+          shadow-lg shadow-black-500/50 mb-4"
+            >
+              {startedMeal.strInstructions}
+            </p>
+          </div>
           <FinishBtn
             id={ id }
             nameType="Meal"
@@ -96,21 +134,20 @@ export default function MealsInProgress() {
             ingredients={ ingredients }
             localIngredients={ checkedIngredients }
           />
-
-          <ShareBtn
-            testId="share-btn"
-            id={ id }
-            type="comidas"
-          />
-
-          <FavoriteBtn
-            id={ id }
-            nameType="Meal"
-            fetchType="meal"
-            typeKey="meals"
-            type="comida"
-          />
-
+          <div className="flex justify-center m-4">
+            <ShareBtn
+              testId="share-btn"
+              id={ id }
+              type="comidas"
+            />
+            <FavoriteBtn
+              id={ id }
+              nameType="Meal"
+              fetchType="meal"
+              typeKey="meals"
+              type="comida"
+            />
+          </div>
         </>)}
     </section>
   );

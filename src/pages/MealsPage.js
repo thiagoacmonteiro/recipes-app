@@ -26,23 +26,29 @@ export default function MealsPage() {
   }
 
   return (
-    <div>
-      <Header searchIcon={ searchIcon } text="Comidas" />
+    <div
+      className="w-screen justify-center px-4 flex flex-col content-center items-center"
+    >
+      <Header searchIcon={ searchIcon } text="Meals" />
       <CategoryFilters type="meal" objectKey="meals" />
-      {resultFetch === null
-        ? global.alert(
-          'Sinto muito, não encontramos nenhuma receita para esses filtros.',
-        )
-        : restrictResult().map((recipe, index) => (
-          <Card
-            key={ index }
-            index={ index }
-            cardName={ recipe.strMeal }
-            img={ recipe.strMealThumb }
-            recipeId={ recipe.idMeal }
-            path="comidas"
-          />
-        ))}
+      <div
+        className=" mt-8 flex w-full justify-center flex-wrap"
+      >
+        {resultFetch === null
+          ? global.alert(
+            'Sinto muito, não encontramos nenhuma receita para esses filtros.',
+          )
+          : restrictResult().map((recipe, index) => (
+            <Card
+              key={ index }
+              index={ index }
+              cardName={ recipe.strMeal }
+              img={ recipe.strMealThumb }
+              recipeId={ recipe.idMeal }
+              path="comidas"
+            />
+          ))}
+      </div>
       <LowerMenu />
     </div>
   );

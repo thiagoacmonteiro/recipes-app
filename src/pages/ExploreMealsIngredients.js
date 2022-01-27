@@ -5,12 +5,12 @@ import LowerMenu from '../components/LowerMenu';
 
 export default function ExploreMealsIngredients() {
   return (
-    <div>
+    <>
       <Header
-        text="Explorar Ingredientes"
+        text="Explore Ingredients"
       />
       <CardIngredients type="meal" />
       <LowerMenu />
-    </div>
+    </>
   );
 }

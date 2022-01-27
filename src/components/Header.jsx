@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import profileIcon from '../images/profileIcon.svg';
-import '../styles/Header.css';
 import FilterForm from './FilterForm';
 
 export default function Header({ searchIcon, text }) {
@@ -13,8 +12,8 @@ export default function Header({ searchIcon, text }) {
   }
 
   return (
-    <div className="header-container">
-      <div className="header-content">
+    <div className="bg-purple-600 w-screen flex items-center flex-col">
+      <div className="flex my-2 justify-around w-full items-center">
         <Link to="/perfil">
           <img
             src={ profileIcon }
@@ -22,14 +21,24 @@ export default function Header({ searchIcon, text }) {
             data-testid="profile-top-btn"
           />
         </Link>
-        <div data-testid="page-title">{text}</div>
+        <h2
+          className="text-white font-bold text-md md:text-lg"
+          data-testid="page-title"
+        >
+          {text}
+
+        </h2>
         {searchIcon && (
-          <button onClick={ renderSearchInput } type="button" className="search-btn">
+          <button
+            onClick={ renderSearchInput }
+            type="button"
+            className="focus:outline-none"
+          >
             <img src={ searchIcon } alt="searchIcon" data-testid="search-top-btn" />
           </button>
         )}
       </div>
-      <div className="search-bar">
+      <div className="bg-white w-full flex justify-center">
         {
           canRenderSearchInput && <FilterForm />
         }

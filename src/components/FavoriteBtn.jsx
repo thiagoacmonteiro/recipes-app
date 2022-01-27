@@ -46,7 +46,10 @@ export default function FavoriteBtn({
   }, []);
 
   return (
-    <div>
+    <div
+      className="m-4 bg-gray-300 p-2 rounded-xl h-12 w-12
+    flex items-center justify-center"
+    >
       <input
         data-testid="favorite-btn"
         type="image"

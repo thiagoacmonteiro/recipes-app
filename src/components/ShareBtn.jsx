@@ -13,9 +13,12 @@ export default function ShareBtn({ testId, id, type }) {
   }
 
   return (
-    <div>
+    <div
+      className="m-4 bg-gray-300 p-2 rounded-xl h-12 w-12
+    flex items-center justify-center"
+    >
       { copiedLink && (
-        <p>Link copiado!</p>
+        <p>Link copied!</p>
       ) }
       <button
         data-testid={ testId }
