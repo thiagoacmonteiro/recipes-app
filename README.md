@@ -5,6 +5,8 @@ A project to find many different recipes (meals and drinks) from an API. You can
 ## Tecnologias e ferramentas utilizadas robot
 - ReactJS
 - TailwindCSS
+- Context API
+- fetch Recipes from API
 
 ## Vercel Deploy
 https://recipes-app-dusky-sigma.vercel.app/
