@@ -15,7 +15,7 @@ https://recipes-app-dusky-sigma.vercel.app/
 ## Instalation and usage
 
 ### Clone repository
-$ git clone git@github.com:thiagoacmonteiro/recipes-app.git
+$ git clone https://github.com/thiagoacmonteiro/recipes-app.git
 
 ### Enter
 $ cd recipes-app
