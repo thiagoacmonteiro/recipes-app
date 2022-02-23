@@ -6,6 +6,7 @@ A project to find many different recipes (meals and drinks) from an API. You can
 - ReactJS
 - TailwindCSS
 - Context API
+- Browser Router
 - fetch Recipes from API
 
 ## Vercel Deploy
